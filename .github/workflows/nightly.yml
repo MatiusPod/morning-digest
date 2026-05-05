@@ -1,0 +1,33 @@
+name: Nightly Digest
+
+on:
+  schedule:
+    - cron: '0 5 * * *'   # runs every day at 5:00 AM UTC
+  workflow_dispatch:        # allows you to run it manually too
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run fetch script
+        env:
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+        run: python fetch_news.py
+
+      - name: Commit digest.json
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add digest.json
+          git commit -m "Daily digest $(date +'%Y-%m-%d')" || echo "No changes"
+          git push
