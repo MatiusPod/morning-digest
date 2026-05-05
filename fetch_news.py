@@ -1,5 +1,6 @@
 import json                                                                                                                                                                                                 
-import os                                                                                                                                                                                                   
+import os
+import time
 from datetime import datetime, timezone                                                                                                                                                                     
                                                                                                                                                                                                             
 from anthropic import Anthropic                                                                                                                                                                             
@@ -38,10 +39,12 @@ def main():
         "topics": [],                                                                                                                                                                                       
     }                                                                            
                           
-    for topic in topics:      
-        print(f"Fetching: {topic}")                                                                                                                                                                         
-        summary = fetch_topic(topic)
-        digest["topics"].append({"title": topic, "summary": summary})                                                                                                                                       
+    for i, topic in enumerate(topics):                                                                                                                                                                      
+          if i > 0:                                                                                                                                                                                           
+              time.sleep(20)             
+          print(f"Fetching: {topic}")                                                                                                                                                                         
+          summary = fetch_topic(topic)                                                                                                                                                                        
+          digest["topics"].append({"title": topic, "summary": summary})                                                                                                                                       
                                                                                  
     with open("digest.json", "w") as f:                                                                                                                                                                     
         json.dump(digest, f, indent=2)
