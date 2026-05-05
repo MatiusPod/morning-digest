@@ -4,7 +4,7 @@ from datetime import datetime, timezone
                                                                                                                                                                                                             
 from anthropic import Anthropic                                                                                                                                                                             
                                                                                                                                                                                                             
-MODEL = "claude-sonnet-4-20250514"                                               
+MODEL = "claude-sonnet-4-5"                                               
 TOOLS = [{"type": "web_search_20250305", "name": "web_search"}]                                                                                                                                             
                                                                                  
 client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
