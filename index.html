@@ -156,11 +156,60 @@
     .topic:nth-child(even) { --tilt:  0.3deg; }
     .topic h2 {
       font-family: "Playfair Display", serif;
-      font-weight: 700; font-size: 1.55rem;
+      font-weight: 700; font-size: 1.6rem;
       color: var(--accent);
-      margin-bottom: 14px; line-height: 1.18;
+      margin-bottom: 12px; line-height: 1.18;
       padding-right: 64px;
     }
+    .brief-label {
+      font-family: "Inter", sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.32em;
+      text-transform: uppercase; font-weight: 700;
+      color: var(--accent);
+      margin: 4px 0 10px;
+    }
+    .brief {
+      font-family: "Playfair Display", serif;
+      font-style: italic; font-weight: 500;
+      font-size: 1.18rem; line-height: 1.5;
+      color: #2c2738;
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
+      margin-bottom: 24px;
+    }
+    .stories { list-style: none; display: flex; flex-direction: column; gap: 18px; margin: 4px 0 0; }
+    .story {
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 27, 46, 0.09);
+    }
+    .story:first-child { border-top: 0; padding-top: 4px; }
+    .story h3 {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 1.15rem; line-height: 1.3;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .story p {
+      font-family: "Playfair Display", serif;
+      font-size: 1rem; line-height: 1.65;
+      color: #3a3445;
+      margin-bottom: 10px;
+    }
+    .src {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: "Inter", sans-serif;
+      font-size: 0.74rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s ease;
+    }
+    .src:hover { border-bottom-color: var(--accent); }
+    .src .arrow { transition: transform 0.15s ease; display: inline-block; }
+    .src:hover .arrow { transform: translateX(3px); }
     .topic .body {
       font-family: "Playfair Display", serif;
       font-size: 1.02rem; line-height: 1.72;
@@ -173,7 +222,6 @@
       text-decoration-thickness: 1px;
       word-break: break-word;
     }
-    .topic .body a:hover { text-decoration-thickness: 2px; }
 
     @keyframes rise {
       from { opacity: 0; transform: translateY(40px) rotate(var(--tilt)); }
@@ -464,21 +512,78 @@
         return;
       }
       root.innerHTML = "";
-      topics.forEach((t, i) => {
-        const el = document.createElement("article");
-        el.className = "topic";
-        el.dataset.num = String(i + 1).padStart(2, "0");
-        el.style.setProperty("--accent", ACCENTS[i % ACCENTS.length]);
-        el.style.animationDelay = (i * 0.08) + "s";
-        const h = document.createElement("h2");
-        h.textContent = t.title;
+      topics.forEach((t, i) => root.append(renderTopic(t, i)));
+      $("#meta-text").textContent = formatGenerated(data.generated_at);
+    }
+
+    function renderTopic(t, i) {
+      const el = document.createElement("article");
+      el.className = "topic";
+      el.dataset.num = String(i + 1).padStart(2, "0");
+      el.style.setProperty("--accent", ACCENTS[i % ACCENTS.length]);
+      el.style.animationDelay = (i * 0.08) + "s";
+
+      const h = document.createElement("h2");
+      h.textContent = t.title;
+      el.append(h);
+
+      const brief = (t.executive_summary || "").trim();
+      const stories = Array.isArray(t.stories) ? t.stories : [];
+
+      if (brief) {
+        const label = document.createElement("div");
+        label.className = "brief-label";
+        label.textContent = "The brief";
+        el.append(label);
+        const p = document.createElement("p");
+        p.className = "brief";
+        p.textContent = brief;
+        el.append(p);
+      }
+
+      if (stories.length) {
+        const ul = document.createElement("ul");
+        ul.className = "stories";
+        stories.forEach(s => ul.append(renderStory(s)));
+        el.append(ul);
+      } else if (!brief && t.summary) {
+        // backwards-compatible render for old digest format
         const body = document.createElement("div");
         body.className = "body";
-        body.innerHTML = linkify(t.summary || "");
-        el.append(h, body);
-        root.append(el);
-      });
-      $("#meta-text").textContent = formatGenerated(data.generated_at);
+        body.innerHTML = linkify(t.summary);
+        el.append(body);
+      }
+
+      return el;
+    }
+
+    function renderStory(s) {
+      const li = document.createElement("li");
+      li.className = "story";
+      const h = document.createElement("h3");
+      h.textContent = s.headline || "";
+      const p = document.createElement("p");
+      p.textContent = s.body || "";
+      li.append(h, p);
+      if (s.source_url) {
+        const a = document.createElement("a");
+        a.className = "src";
+        a.href = s.source_url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        const name = (s.source_name || hostnameFrom(s.source_url) || "source").trim();
+        const arrow = document.createElement("span");
+        arrow.className = "arrow";
+        arrow.textContent = "→";
+        a.append(document.createTextNode(`Read at ${name} `), arrow);
+        li.append(a);
+      }
+      return li;
+    }
+
+    function hostnameFrom(url) {
+      try { return new URL(url).hostname.replace(/^www\./, ""); }
+      catch { return ""; }
     }
 
     function formatGenerated(s) {
