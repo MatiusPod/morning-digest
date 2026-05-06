@@ -1,9 +1,29 @@
 {
-  "generated_at": "2026-05-06 21:52 UTC",
+  "generated_at": "2026-05-06 22:02 UTC",
   "topics": [
     {
       "title": "Climate Science Breakthroughs",
-      "summary": "I apologize, but I was unable to find any significant climate science breakthrough news specifically from the last 24 hours (May 5-6, 2026). The search results show climate-related news from earlier periods in 2026, but nothing from just the past day.\n\nHere are the most recent climate science developments I found from the past few weeks and months of 2026:\n\n## Recent Climate Science News (April-May 2026):\n\n**1. Global Warming Acceleration Confirmed**\n\n\nA study published in Geophysical Research Letters in March reported with statistical confidence that global warming has accelerated since around 2015, with the rate increasing from 0.2\u00b0C to about 0.35\u00b0C per decade, suggesting the 1.5\u00b0C threshold could be reached before 2030 if current trends continue.\n\n\n\n**2. Atlantic Ocean Current Collapse Warning**\n\n\nA study published in Science Advances on April 15 found that the Atlantic meridional overturning circulation (AMOC) is likely to weaken by 42-58% by 2100, with researchers warning that such a decline could have major impacts on global climate systems, including shifts in rainfall patterns, rising sea levels, and extreme weather changes.\n\n\n\n**3. Renewable Energy vs. Carbon Capture Analysis**\n\n\nA study published in Communications Sustainability found that utility-scale solar and wind power generally provide greater climate and public health benefits per dollar than direct air capture (DAC), based on modeling across 22 U.S. grid regions through 2050.\n\n\n\n**4. Earth's Energy Imbalance at Record Levels**\n\n\nThe World Meteorological Organization's State of the Global Climate 2025 introduced a new indicator and concluded that Earth's energy budget is more out of balance than at any previous time in the observational record.\n\n\n\nFor the most current news within the last 24 hours, I recommend checking real-time news sources directly."
+      "executive_summary": "A breakthrough AI system is revealing never-before-seen ocean currents critical to climate forecasting, while a stark new study warns New Orleans must begin planning immediate relocation as rising seas threaten to surround the city by century's end.",
+      "stories": [
+        {
+          "headline": "AI Unveils Hidden Ocean Currents Critical to Climate Science",
+          "body": "Scientists developed GOFLOW, an AI tool that turns weather satellite images into detailed maps of fast-moving ocean currents previously impossible to observe. The breakthrough uses existing satellites to reveal small-scale currents key to understanding heat transport, carbon storage, and marine ecosystems without requiring new hardware.",
+          "source_url": "https://www.uri.edu/news/2026/04/new-satellite-based-ai-approach-reveals-ocean-currents-in-unprecedented-detail/",
+          "source_name": "University of Rhode Island"
+        },
+        {
+          "headline": "New Orleans Told to Start Relocation Planning Now",
+          "body": "A Nature study published this week concludes New Orleans has reached a climate 'point of no return' and must begin planning to relocate residents as sea-level rise combined with sinking land will likely surround the city with Gulf waters by the end of this century. Researchers say the transition requires generations of planning and should start immediately.",
+          "source_url": "https://www.npr.org/2026/05/06/nx-s1-5810941/new-orleans-ocean-study",
+          "source_name": "NPR"
+        },
+        {
+          "headline": "Airborne Microplastics Now Warming the Atmosphere",
+          "body": "Colored microplastics floating in the atmosphere are trapping heat at about 16% the warming power of black carbon soot, according to research published Monday in Nature Climate Change. Scientists found darker plastic particles absorb sunlight as they drift globally, creating a previously unrecognized contributor to climate change.",
+          "source_url": "https://www.washingtonpost.com/climate-environment/2026/05/04/microplastics-global-warming-climate/",
+          "source_name": "The Washington Post"
+        }
+      ]
     }
   ]
 }
