@@ -7,7 +7,23 @@ from anthropic import Anthropic, RateLimitError
 
 MODEL = "claude-sonnet-4-5"
 
-WEB_SEARCH = {"type": "web_search_20250305", "name": "web_search"}
+CONFIG_PATH = "config.json"
+
+
+def load_config():
+    with open(CONFIG_PATH) as f:
+        return json.load(f)
+
+
+def build_web_search(sources):
+    tool = {
+        "type": "web_search_20250305",
+        "name": "web_search",
+        "max_uses": 2,
+    }
+    if sources:
+        tool["allowed_domains"] = sources
+    return tool
 
 SUBMIT = {
     "name": "submit_digest",
@@ -68,7 +84,6 @@ SUBMIT = {
     },
 }
 
-TOOLS = [WEB_SEARCH, SUBMIT]
 
 SYSTEM = (
     "You are a Morning Brew-style editor producing an executive briefing. "
@@ -89,14 +104,14 @@ USER_TMPL = (
 client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
 
-def fetch_topic(topic):
+def fetch_topic(topic, tools):
     for attempt in range(4):
         try:
             response = client.messages.create(
                 model=MODEL,
                 max_tokens=2048,
                 system=SYSTEM,
-                tools=TOOLS,
+                tools=tools,
                 messages=[
                     {"role": "user", "content": USER_TMPL.format(topic=topic)}
                 ],
@@ -117,8 +132,10 @@ def fetch_topic(topic):
 
 
 def main():
-    with open("topics.json") as f:
-        topics = json.load(f)["topics"]
+    cfg = load_config()
+    topics = cfg.get("topics", [])
+    sources = cfg.get("sources", []) or []
+    tools = [build_web_search(sources), SUBMIT]
 
     digest = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
@@ -129,7 +146,7 @@ def main():
         if i > 0:
             time.sleep(30)
         print(f"Fetching: {topic}")
-        result = fetch_topic(topic)
+        result = fetch_topic(topic, tools)
         digest["topics"].append({
             "title": topic,
             "executive_summary": result.get("executive_summary", ""),

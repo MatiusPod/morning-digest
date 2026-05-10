@@ -1,0 +1,21 @@
+{
+  "topics": [
+    "AI announcements",
+    "New AI models",
+    "Emerging AI startups",
+    "AI Infrastructure news"
+  ],
+  "sources": [
+    "reuters.com",
+    "bloomberg.com",
+    "techcrunch.com",
+    "theverge.com",
+    "axios.com",
+    "x.com",
+    "arstechnica.com"
+  ],
+  "schedule": {
+    "hour": 7,
+    "timezone": "UTC"
+  }
+}

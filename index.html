@@ -6,435 +6,775 @@
   <title>Morning Digest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --paper: #faf2dc;
-      --paper-warm: #f5e9c8;
-      --ink: #1f1b2e;
-      --ink-soft: #5a5469;
-      --dawn-1: #1a1740;
-      --dawn-2: #4d2363;
-      --dawn-3: #b54f5d;
-      --dawn-4: #e88150;
-      --dawn-5: #f4c267;
-      --vermilion: #d23e3a;
-      --ochre: #d99a30;
-      --teal: #2a8f81;
-      --burnt: #b9572d;
-      --royal: #6a4c93;
-      --sage: #5a7d4f;
-      --plum: #7b2c5f;
+      --bg-1: #1b0a2c;
+      --bg-2: #2c0e3d;
+      --bg-3: #4a1352;
+      --bg-4: #6b1f5c;
+      --parchment: #f5deb3;
+      --parchment-dim: #c9b58c;
+      --gold: #f4c430;
+      --gold-dark: #b8860b;
+      --mug-light: #d8a87a;
+      --mug-mid: #a87145;
+      --mug-dark: #6b3a1f;
+      --mug-shadow: #3a1d0e;
+      --steam: #f5e6d3;
+      --red: #cf3030;
+      --magenta: #b8336a;
+      --teal: #1e7e7e;
+      --ink: #15081f;
+      --border: #2d0f3f;
+      --frame: #f5deb3;
+      --frame-dark: #8b6f3a;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { min-height: 100%; }
+    html, body { height: 100%; }
     body {
-      font-family: "Inter", system-ui, -apple-system, sans-serif;
-      color: var(--ink);
+      font-family: "VT323", ui-monospace, monospace;
+      font-size: 20px;
+      color: var(--parchment);
       background:
-        radial-gradient(circle at 78% 12%, rgba(249, 215, 126, 0.55) 0%, rgba(249, 215, 126, 0) 38%),
-        radial-gradient(circle at 78% 12%, rgba(244, 162, 97, 0.55) 0%, rgba(244, 162, 97, 0) 22%),
-        linear-gradient(178deg, var(--dawn-1) 0%, var(--dawn-2) 24%, var(--dawn-3) 56%, var(--dawn-4) 82%, var(--dawn-5) 100%);
+        radial-gradient(ellipse at 50% 8%, rgba(244, 196, 48, 0.18) 0%, transparent 55%),
+        linear-gradient(178deg, var(--bg-1) 0%, var(--bg-2) 35%, var(--bg-3) 70%, var(--bg-4) 100%);
       background-attachment: fixed;
       min-height: 100vh;
       overflow-x: hidden;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+      letter-spacing: 0.02em;
     }
+
+    /* twinkling pixel stars across all screens */
     body::before {
       content: "";
-      position: fixed; inset: 0; pointer-events: none; z-index: 1;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.18;
-      mix-blend-mode: overlay;
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        radial-gradient(2px 2px at 12% 18%, var(--parchment) 50%, transparent 51%),
+        radial-gradient(2px 2px at 78% 22%, var(--gold) 50%, transparent 51%),
+        radial-gradient(2px 2px at 32% 65%, var(--parchment) 50%, transparent 51%),
+        radial-gradient(2px 2px at 88% 80%, var(--parchment-dim) 50%, transparent 51%),
+        radial-gradient(2px 2px at 8% 88%, var(--gold) 50%, transparent 51%),
+        radial-gradient(2px 2px at 55% 12%, var(--parchment-dim) 50%, transparent 51%),
+        radial-gradient(2px 2px at 62% 48%, var(--parchment) 50%, transparent 51%),
+        radial-gradient(2px 2px at 22% 38%, var(--gold) 50%, transparent 51%),
+        radial-gradient(2px 2px at 95% 55%, var(--parchment-dim) 50%, transparent 51%);
+      animation: twinkle 4s steps(2, end) infinite;
     }
-    .app { position: relative; z-index: 2; max-width: 880px; margin: 0 auto; padding: 64px 24px 96px; }
-
-    /* HEADER */
-    .header { position: relative; margin-bottom: 64px; }
-    .sun {
-      position: absolute; top: -34px; right: -38px; width: 240px; height: 240px;
-      background: radial-gradient(circle, #fde29a 0%, #f4a261 50%, transparent 72%);
-      border-radius: 50%; filter: blur(14px); z-index: -1;
-    }
-    .eyebrow {
-      font-size: 0.72rem; letter-spacing: 0.42em; text-transform: uppercase;
-      color: rgba(250, 242, 220, 0.78); font-weight: 600; margin-bottom: 14px;
-    }
-    h1 {
-      font-family: "Playfair Display", serif;
-      font-weight: 900;
-      font-size: clamp(3rem, 9vw, 5.6rem);
-      line-height: 0.9;
-      color: var(--paper);
-      letter-spacing: -0.025em;
-      text-shadow: 0 8px 36px rgba(26, 23, 64, 0.45);
-    }
-    h1 .digest { font-style: italic; color: var(--dawn-5); display: inline-block; }
-    .tagline {
-      font-family: "Playfair Display", serif;
-      font-style: italic; font-weight: 500;
-      font-size: clamp(1rem, 2.2vw, 1.25rem);
-      color: rgba(250, 242, 220, 0.82);
-      margin: 22px 0 28px; max-width: 560px;
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.6; }
+      50%      { opacity: 1; }
     }
 
-    /* horizon: jagged warm bands, woodcut feel */
-    .horizon {
-      display: flex; gap: 4px; height: 12px; margin-bottom: 30px; opacity: 0.85;
+    /* simple CRT scanline overlay for extra retro feel */
+    body::after {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 50;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0px,
+        rgba(0, 0, 0, 0) 2px,
+        rgba(0, 0, 0, 0.08) 3px,
+        rgba(0, 0, 0, 0.08) 4px
+      );
+      mix-blend-mode: multiply;
     }
-    .horizon span { flex: 1; border-radius: 1px; }
-    .horizon span:nth-child(1) { background: var(--vermilion); transform: skewY(-1deg); }
-    .horizon span:nth-child(2) { background: var(--burnt); transform: skewY(0.8deg); }
-    .horizon span:nth-child(3) { background: var(--ochre); transform: skewY(-0.6deg); }
-    .horizon span:nth-child(4) { background: var(--dawn-5); transform: skewY(0.5deg); }
-    .horizon span:nth-child(5) { background: var(--royal); transform: skewY(-0.4deg); }
 
-    .meta-bar {
+    /* screen visibility */
+    .screen { display: none; position: relative; z-index: 1; min-height: 100vh; }
+    body.show-login .screen-login { display: flex; }
+    body.show-home  .screen-home  { display: flex; }
+    body.show-news  .screen-news  { display: block; }
+
+    /* pixel font helpers */
+    .px { font-family: "Press Start 2P", "VT323", monospace; letter-spacing: 0; }
+    .px-sm { font-size: 0.6rem; }
+    .px-md { font-size: 0.85rem; }
+    .px-lg { font-size: 1.4rem; }
+    .px-xl { font-size: 2rem; }
+
+    /* pixel button — chunky 4px border via box-shadows */
+    .pbtn {
+      cursor: pointer;
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.04em;
+      color: var(--parchment);
+      background: var(--bg-3);
+      border: 0; padding: 12px 16px;
+      image-rendering: pixelated;
+      box-shadow:
+        0 -4px 0 0 var(--bg-4) inset,
+        0  4px 0 0 var(--ink),
+        4px  0 0 0 var(--ink),
+       -4px  0 0 0 var(--ink),
+        0 -4px 0 0 var(--ink),
+        0  8px 0 0 var(--ink);
+      transform: translateY(-4px);
+      transition: transform 0.05s linear, box-shadow 0.05s linear;
+      text-transform: uppercase;
+    }
+    .pbtn:hover { background: var(--bg-4); }
+    .pbtn:active {
+      transform: translateY(0);
+      box-shadow:
+        0 -4px 0 0 var(--bg-2) inset,
+        0  4px 0 0 var(--ink),
+        4px  0 0 0 var(--ink),
+       -4px  0 0 0 var(--ink),
+        0 -4px 0 0 var(--ink),
+        0  4px 0 0 var(--ink);
+    }
+    .pbtn-gold   { background: var(--gold); color: var(--ink); }
+    .pbtn-gold:hover { background: #ffd84a; }
+    .pbtn-red    { background: var(--red); color: var(--parchment); }
+    .pbtn-teal   { background: var(--teal); color: var(--parchment); }
+    .pbtn-magenta{ background: var(--magenta); color: var(--parchment); }
+    .pbtn-ghost  { background: transparent; }
+
+    /* pixel "frame" panel (drawn corners) */
+    .panel {
+      position: relative;
+      background: rgba(27, 10, 44, 0.78);
+      border: 4px solid var(--parchment);
+      padding: 24px;
+      box-shadow:
+        inset 0 0 0 4px var(--bg-1),
+        8px 8px 0 0 var(--ink);
+      image-rendering: pixelated;
+    }
+
+    /* ============ LOGIN SCREEN ============ */
+    .screen-login {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .login-title {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(1.4rem, 5.2vw, 2.6rem);
+      color: var(--gold);
+      text-shadow:
+        4px 4px 0 var(--ink),
+        0 0 24px rgba(244, 196, 48, 0.5);
+      line-height: 1.4;
+    }
+    .login-sub {
+      font-size: 1.4rem;
+      color: var(--parchment-dim);
+      max-width: 520px;
+    }
+    .mug-wrap {
+      cursor: pointer;
+      display: inline-block;
+      padding: 12px;
+      background: transparent;
+      border: 0;
+      transition: transform 0.1s steps(2, end);
+    }
+    .mug-wrap:hover { transform: translateY(-6px); }
+    .mug-wrap:active { transform: translateY(2px); }
+    .mug-wrap svg {
+      display: block;
+      image-rendering: pixelated;
+      filter: drop-shadow(6px 6px 0 var(--ink));
+    }
+    .login-hint {
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.6rem;
+      color: var(--gold);
+      animation: blink 1.2s steps(2, end) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* steam wisps (pixel) */
+    .steam-wisp {
+      animation: rise 2.4s steps(8, end) infinite;
+      transform-origin: center;
+    }
+    .steam-wisp.w2 { animation-delay: 0.6s; }
+    .steam-wisp.w3 { animation-delay: 1.2s; }
+    @keyframes rise {
+      0%   { opacity: 0;   transform: translateY(8px); }
+      30%  { opacity: 0.9; transform: translateY(0); }
+      80%  { opacity: 0.6; transform: translateY(-14px); }
+      100% { opacity: 0;   transform: translateY(-22px); }
+    }
+
+    /* ============ HOME SCREEN ============ */
+    .screen-home {
+      flex-direction: column;
+      padding: 24px;
+      min-height: 100vh;
+    }
+    .home-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding-bottom: 18px;
+      border-bottom: 4px solid var(--parchment);
+      margin-bottom: 12px;
+    }
+    .home-logo {
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.95rem;
+      color: var(--gold);
+      text-shadow: 3px 3px 0 var(--ink);
+    }
+    .home-logo .small { font-size: 0.55rem; color: var(--parchment-dim); display: block; margin-top: 6px; }
+    .home-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .home-center {
+      flex: 1;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 24px; padding: 40px 12px;
+      text-align: center;
+    }
+    .home-mug-label {
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.85rem;
+      color: var(--parchment);
+      text-shadow: 3px 3px 0 var(--ink);
+    }
+    .home-mug-sub {
+      font-size: 1.25rem;
+      color: var(--parchment-dim);
+      max-width: 520px;
+    }
+    .home-meta {
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.55rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-top: 6px;
+    }
+
+    .home-footer {
+      margin-top: auto;
+      padding: 18px 12px 4px;
+      border-top: 4px solid var(--parchment);
+      display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .schedule-row {
       display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
     }
-    .meta {
-      display: inline-flex; gap: 10px; align-items: center;
-      padding: 9px 18px;
-      background: rgba(26, 23, 64, 0.4);
-      border: 1px solid rgba(250, 242, 220, 0.18);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border-radius: 100px;
-      color: rgba(250, 242, 220, 0.92);
-      font-size: 0.85rem;
+    .schedule-label {
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.6rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
     }
-    .meta .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--dawn-5); box-shadow: 0 0 12px var(--dawn-5);
+    .pselect {
+      font-family: "VT323", monospace;
+      font-size: 1.2rem;
+      color: var(--parchment);
+      background: var(--bg-2);
+      border: 4px solid var(--parchment);
+      padding: 6px 10px 6px 12px;
+      box-shadow: 4px 4px 0 0 var(--ink);
+      image-rendering: pixelated;
+      cursor: pointer;
+      min-width: 80px;
+      appearance: none; -webkit-appearance: none; -moz-appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--gold) 50%),
+        linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+      background-position: calc(100% - 16px) 14px, calc(100% - 10px) 14px;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 28px;
     }
-    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-left: auto; }
-    .btn {
-      cursor: pointer; border: 0; font: inherit; font-weight: 600; font-size: 0.88rem;
-      padding: 10px 20px; border-radius: 100px;
-      display: inline-flex; align-items: center; gap: 8px;
-      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
-    .btn-primary {
-      background: var(--paper); color: var(--ink);
-      box-shadow: 0 8px 24px rgba(26, 23, 64, 0.3);
-    }
-    .btn-primary:hover { background: white; }
-    .btn-ghost {
-      background: rgba(250, 242, 220, 0.1); color: var(--paper);
-      border: 1px solid rgba(250, 242, 220, 0.3);
-    }
-    .btn-ghost:hover { background: rgba(250, 242, 220, 0.2); }
+    .pselect:focus { outline: 0; border-color: var(--gold); }
+    .schedule-tz { min-width: 220px; }
 
-    /* TOPICS */
-    .topics { display: flex; flex-direction: column; gap: 26px; }
+    .footer-credit {
+      font-size: 1.05rem;
+      color: var(--parchment-dim);
+    }
+    .footer-credit a { color: var(--gold); text-decoration: none; border-bottom: 2px dotted var(--gold); }
+
+    /* ============ NEWS SCREEN ============ */
+    .screen-news {
+      padding: 24px 16px 80px;
+      max-width: 920px; margin: 0 auto;
+    }
+    .news-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .news-title {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(0.85rem, 3vw, 1.3rem);
+      color: var(--gold);
+      text-shadow: 3px 3px 0 var(--ink);
+    }
+    .news-meta {
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.55rem;
+      color: var(--parchment-dim);
+      letter-spacing: 0.06em;
+      margin-top: 8px;
+    }
+
+    .topics { display: flex; flex-direction: column; gap: 28px; }
     .topic {
-      --tilt: 0deg;
-      --accent: var(--vermilion);
-      background: var(--paper);
-      border-radius: 4px;
-      padding: 32px 36px 32px 32px;
-      box-shadow:
-        0 1px 0 rgba(0, 0, 0, 0.05),
-        0 18px 36px -12px rgba(26, 23, 64, 0.5),
-        0 4px 12px rgba(26, 23, 64, 0.18);
+      --accent: var(--gold);
       position: relative;
-      transform: rotate(var(--tilt));
-      animation: rise 0.8s cubic-bezier(.2,.7,.2,1) backwards;
+      background: var(--parchment);
+      color: var(--ink);
+      border: 4px solid var(--ink);
+      box-shadow: 8px 8px 0 0 var(--accent);
+      padding: 22px 26px 24px;
+      animation: rise-card 0.4s steps(6, end) backwards;
+    }
+    @keyframes rise-card {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
     }
     .topic::before {
-      content: ""; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 9px; background: var(--accent); border-radius: 4px 0 0 4px;
+      content: "";
+      position: absolute; left: -4px; right: -4px; top: -4px; height: 14px;
+      background:
+        repeating-linear-gradient(to right,
+          var(--accent) 0 16px,
+          var(--ink)    16px 20px);
     }
-    .topic::after {
-      content: attr(data-num);
-      position: absolute; top: 14px; right: 22px;
-      font-family: "Playfair Display", serif;
-      font-style: italic; font-weight: 900; font-size: 2.4rem;
-      color: var(--accent); opacity: 0.16; line-height: 1;
-    }
-    .topic:nth-child(odd)  { --tilt: -0.3deg; }
-    .topic:nth-child(even) { --tilt:  0.3deg; }
     .topic h2 {
-      font-family: "Playfair Display", serif;
-      font-weight: 700; font-size: 1.6rem;
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.85rem;
+      color: var(--ink);
+      margin: 14px 0 12px;
+      line-height: 1.4;
+    }
+    .topic .num {
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.55rem;
       color: var(--accent);
-      margin-bottom: 12px; line-height: 1.18;
-      padding-right: 64px;
+      background: var(--ink);
+      padding: 4px 8px;
+      display: inline-block;
+      letter-spacing: 0.08em;
     }
     .brief-label {
-      font-family: "Inter", sans-serif;
-      font-size: 0.7rem; letter-spacing: 0.32em;
-      text-transform: uppercase; font-weight: 700;
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.55rem;
       color: var(--accent);
-      margin: 4px 0 10px;
+      background: var(--ink);
+      padding: 4px 8px;
+      display: inline-block;
+      letter-spacing: 0.08em;
+      margin: 8px 0 10px;
     }
     .brief {
-      font-family: "Playfair Display", serif;
-      font-style: italic; font-weight: 500;
-      font-size: 1.18rem; line-height: 1.5;
-      color: #2c2738;
+      font-family: "VT323", monospace;
+      font-size: 1.3rem;
+      line-height: 1.45;
+      color: var(--ink);
       padding-left: 14px;
-      border-left: 3px solid var(--accent);
-      margin-bottom: 24px;
+      border-left: 4px solid var(--accent);
+      margin-bottom: 22px;
     }
-    .stories { list-style: none; display: flex; flex-direction: column; gap: 18px; margin: 4px 0 0; }
+    .stories {
+      list-style: none; display: flex; flex-direction: column; gap: 18px;
+    }
     .story {
-      padding-top: 18px;
-      border-top: 1px solid rgba(31, 27, 46, 0.09);
+      padding-top: 16px;
+      border-top: 2px dashed rgba(21, 8, 31, 0.25);
     }
     .story:first-child { border-top: 0; padding-top: 4px; }
     .story h3 {
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      font-size: 1.15rem; line-height: 1.3;
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.7rem;
+      line-height: 1.45;
       color: var(--ink);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .story p {
-      font-family: "Playfair Display", serif;
-      font-size: 1rem; line-height: 1.65;
-      color: #3a3445;
-      margin-bottom: 10px;
+      font-family: "VT323", monospace;
+      font-size: 1.2rem; line-height: 1.5;
+      color: #2c1438; margin-bottom: 10px;
     }
     .src {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: "Inter", sans-serif;
-      font-size: 0.74rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent);
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.06em;
+      color: var(--parchment);
+      background: var(--ink);
+      padding: 8px 12px;
       text-decoration: none;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.15s ease;
+      box-shadow: 4px 4px 0 0 var(--accent);
+      transition: transform 0.05s steps(2, end);
     }
-    .src:hover { border-bottom-color: var(--accent); }
-    .src .arrow { transition: transform 0.15s ease; display: inline-block; }
-    .src:hover .arrow { transform: translateX(3px); }
-    .topic .body {
-      font-family: "Playfair Display", serif;
-      font-size: 1.02rem; line-height: 1.72;
-      color: #2c2738;
-      white-space: pre-wrap;
-    }
-    .topic .body a {
-      color: var(--accent);
-      text-decoration: underline; text-underline-offset: 2px;
-      text-decoration-thickness: 1px;
-      word-break: break-word;
-    }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(40px) rotate(var(--tilt)); }
-      to   { opacity: 1; transform: translateY(0)    rotate(var(--tilt)); }
-    }
-
-    .skeleton {
-      background: linear-gradient(110deg, rgba(250,242,220,0.14) 30%, rgba(250,242,220,0.28) 50%, rgba(250,242,220,0.14) 70%);
-      background-size: 200% 100%;
-      animation: shimmer 1.6s linear infinite;
-      height: 180px; border-radius: 4px;
-    }
-    .skeleton::before, .skeleton::after { display: none; }
-    @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+    .src:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 0 var(--accent); }
 
     .empty {
       text-align: center; padding: 56px 28px;
-      background: rgba(26, 23, 64, 0.35);
-      border: 1px dashed rgba(250, 242, 220, 0.3);
-      border-radius: 8px;
-      color: rgba(250, 242, 220, 0.85);
-      font-family: "Playfair Display", serif; font-style: italic;
-      font-size: 1.05rem;
+      background: rgba(27, 10, 44, 0.6);
+      border: 4px dashed var(--parchment-dim);
+      color: var(--parchment);
+      font-size: 1.3rem;
     }
-    .empty strong { font-style: normal; color: var(--paper); }
 
-    /* MODALS */
+    /* ============ MODALS ============ */
     .overlay {
       position: fixed; inset: 0;
-      background: rgba(10, 8, 24, 0.62);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      background: rgba(10, 4, 18, 0.78);
       display: none; align-items: center; justify-content: center;
       z-index: 100; padding: 20px;
-      animation: fade 0.2s ease;
+      animation: fade 0.15s steps(3, end);
     }
     .overlay.open { display: flex; }
     @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
     .modal {
-      background: var(--paper); color: var(--ink);
-      border-radius: 6px; padding: 36px 36px 28px;
-      max-width: 560px; width: 100%;
+      background: var(--parchment);
+      color: var(--ink);
+      border: 4px solid var(--ink);
+      box-shadow: 8px 8px 0 0 var(--gold);
+      padding: 28px 30px 24px;
+      max-width: 580px; width: 100%;
       max-height: 90vh; overflow-y: auto;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
       position: relative;
-      animation: pop 0.25s cubic-bezier(.2,.8,.2,1.05);
+      image-rendering: pixelated;
     }
-    @keyframes pop { from { opacity: 0; transform: translateY(20px) scale(0.97); } to { opacity: 1; transform: none; } }
     .modal::before {
-      content: ""; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 9px; background: var(--burnt); border-radius: 6px 0 0 6px;
+      content: "";
+      position: absolute; left: -4px; right: -4px; top: -4px; height: 14px;
+      background: repeating-linear-gradient(to right,
+        var(--gold) 0 16px,
+        var(--ink)  16px 20px);
     }
     .modal h2 {
-      font-family: "Playfair Display", serif;
-      font-style: italic; font-weight: 900;
-      font-size: 2rem; line-height: 1; margin-bottom: 6px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 1rem;
+      margin: 14px 0 6px;
+      color: var(--ink);
     }
-    .modal .lead { font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 22px; }
+    .modal .lead {
+      font-family: "VT323", monospace;
+      font-size: 1.2rem;
+      color: #3a2540;
+      margin-bottom: 18px;
+    }
 
-    .topics-edit { display: flex; flex-direction: column; gap: 8px; }
-    .topic-row {
+    .row-list { display: flex; flex-direction: column; gap: 8px; }
+    .row {
       display: flex; align-items: center; gap: 10px;
-      padding: 9px 14px;
-      border: 1px solid rgba(31, 27, 46, 0.14);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.55);
-      transition: border-color 0.15s ease, background 0.15s ease;
+      padding: 8px 12px;
+      background: white;
+      border: 3px solid var(--ink);
+      box-shadow: 3px 3px 0 0 var(--gold-dark);
     }
-    .topic-row:focus-within { border-color: rgba(31, 27, 46, 0.4); background: white; }
-    .topic-row .pip { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .topic-row input {
+    .row .pip {
+      width: 12px; height: 12px; flex-shrink: 0;
+      image-rendering: pixelated;
+    }
+    .row input {
       flex: 1; border: 0; outline: 0; background: transparent;
-      font: inherit; color: var(--ink); padding: 4px 0;
+      font-family: "VT323", monospace;
+      font-size: 1.2rem; color: var(--ink); padding: 4px 0;
     }
-    .topic-row .x {
+    .row .x {
       cursor: pointer; border: 0; background: transparent;
-      color: rgba(31, 27, 46, 0.5);
-      font-size: 1.3rem; line-height: 1; padding: 0 6px;
-      transition: color 0.15s ease;
+      color: var(--ink);
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.7rem; padding: 0 6px;
     }
-    .topic-row .x:hover { color: var(--vermilion); }
+    .row .x:hover { color: var(--red); }
 
     .add-row { display: flex; gap: 8px; margin-top: 14px; }
     .add-row input {
-      flex: 1; padding: 11px 18px;
-      border: 1px solid rgba(31, 27, 46, 0.2);
-      border-radius: 999px; font: inherit;
-      background: white; outline: 0;
+      flex: 1; padding: 10px 12px;
+      border: 3px solid var(--ink);
+      font-family: "VT323", monospace; font-size: 1.2rem;
+      background: white; outline: 0; color: var(--ink);
+      box-shadow: 3px 3px 0 0 var(--gold-dark);
     }
-    .add-row input:focus { border-color: var(--burnt); }
+    .add-row input:focus { border-color: var(--magenta); box-shadow: 3px 3px 0 0 var(--magenta); }
     .add-row button {
-      padding: 11px 20px; border-radius: 999px;
-      border: 0; background: var(--ink); color: var(--paper);
-      cursor: pointer; font: inherit; font-weight: 600;
+      padding: 10px 14px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.6rem;
+      border: 0;
+      background: var(--ink); color: var(--parchment);
+      cursor: pointer;
+      box-shadow: 4px 4px 0 0 var(--gold-dark);
     }
+    .add-row button:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 0 var(--gold-dark); }
 
     .modal-actions {
-      display: flex; gap: 10px; justify-content: flex-end;
-      margin-top: 26px; flex-wrap: wrap;
+      display: flex; gap: 12px; justify-content: flex-end;
+      margin-top: 24px; flex-wrap: wrap;
     }
-    .modal-actions .btn { padding: 10px 20px; }
-    .btn-dark  { background: var(--ink);   color: var(--paper); }
-    .btn-warm  { background: var(--burnt); color: var(--paper); }
-    .btn-light { background: rgba(31, 27, 46, 0.08); color: var(--ink); }
-    .btn-light:hover { background: rgba(31, 27, 46, 0.14); }
+    .mbtn {
+      cursor: pointer; border: 0;
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.6rem;
+      padding: 12px 16px;
+      background: var(--ink); color: var(--parchment);
+      box-shadow: 4px 4px 0 0 var(--gold-dark);
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .mbtn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 0 var(--gold-dark); }
+    .mbtn-light { background: white; color: var(--ink); }
+    .mbtn-warm  { background: var(--magenta); color: var(--parchment); }
 
     .pat-instructions {
-      background: rgba(31, 27, 46, 0.05);
-      border-left: 4px solid var(--burnt);
-      padding: 14px 18px; border-radius: 4px;
+      background: rgba(21, 8, 31, 0.06);
+      border-left: 4px solid var(--magenta);
+      padding: 14px 18px;
       margin: 14px 0 18px;
-      font-size: 0.9rem; line-height: 1.55;
+      font-family: "VT323", monospace;
+      font-size: 1.15rem; line-height: 1.5;
     }
-    .pat-instructions ol, .pat-instructions ul { padding-left: 20px; }
-    .pat-instructions li { margin: 3px 0; }
-    .pat-instructions a { color: var(--burnt); font-weight: 600; }
+    .pat-instructions ol, .pat-instructions ul { padding-left: 22px; }
+    .pat-instructions a { color: var(--magenta); font-weight: 700; }
     .pat-instructions code {
-      background: rgba(31, 27, 46, 0.1);
-      padding: 1px 6px; border-radius: 4px;
-      font-size: 0.86em; font-family: ui-monospace, monospace;
+      background: rgba(21, 8, 31, 0.12);
+      padding: 1px 6px;
+      font-family: "VT323", monospace;
     }
     .pat-input {
-      width: 100%; padding: 12px 16px;
-      border: 1px solid rgba(31, 27, 46, 0.2);
-      border-radius: 6px; outline: 0;
-      font-family: ui-monospace, "SF Mono", monospace;
-      font-size: 0.88rem;
-      background: white;
+      width: 100%; padding: 12px;
+      border: 3px solid var(--ink);
+      font-family: "VT323", monospace; font-size: 1.2rem;
+      background: white; outline: 0; color: var(--ink);
+      box-shadow: 3px 3px 0 0 var(--gold-dark);
     }
-    .pat-input:focus { border-color: var(--burnt); }
+    .pat-input:focus { border-color: var(--magenta); box-shadow: 3px 3px 0 0 var(--magenta); }
 
     /* TOAST */
     .toast {
-      position: fixed; bottom: 28px; left: 50%;
+      position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: var(--ink); color: var(--paper);
-      padding: 13px 24px; border-radius: 999px;
-      font-weight: 500; font-size: 0.9rem;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-      opacity: 0; transition: all 0.3s ease;
+      background: var(--ink); color: var(--parchment);
+      font-family: "Press Start 2P", monospace; font-size: 0.6rem;
+      padding: 14px 20px;
+      border: 4px solid var(--gold);
+      box-shadow: 4px 4px 0 0 var(--bg-1);
+      opacity: 0; transition: opacity 0.15s steps(3, end), transform 0.15s steps(3, end);
       z-index: 200; pointer-events: none;
       max-width: calc(100% - 40px);
+      letter-spacing: 0.04em;
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .toast.error { background: var(--vermilion); }
-    .toast.success { background: var(--sage); }
-
-    footer {
-      margin-top: 88px; text-align: center;
-      color: rgba(250, 242, 220, 0.55);
-      font-size: 0.78rem; letter-spacing: 0.04em;
-    }
-    footer a { color: rgba(250, 242, 220, 0.8); text-decoration: none; border-bottom: 1px solid rgba(250, 242, 220, 0.3); }
+    .toast.error   { border-color: var(--red); }
+    .toast.success { border-color: var(--gold); background: var(--teal); }
 
     @media (max-width: 600px) {
-      .app { padding: 40px 16px 60px; }
-      .topic { padding: 24px 22px 24px 24px; }
-      .sun { width: 170px; height: 170px; right: -28px; top: -10px; }
-      .actions { margin-left: 0; width: 100%; }
-      .actions .btn { flex: 1; justify-content: center; }
-      .modal { padding: 28px 24px 22px; }
+      .home-header { gap: 8px; }
+      .home-actions { width: 100%; justify-content: flex-end; }
+      .schedule-tz { min-width: 160px; }
+      .topic { padding: 18px 18px 20px; }
+      .modal { padding: 22px 18px 18px; }
+      .login-title { font-size: 1.1rem; }
     }
   </style>
 </head>
-<body>
-  <div class="app">
-    <header class="header">
-      <div class="sun"></div>
-      <div class="eyebrow" id="today">A new dawn</div>
-      <h1>Morning <span class="digest">Digest</span></h1>
-      <p class="tagline">"It is morning, and the world has been busy. Here is what mattered while you slept."</p>
-      <div class="horizon"><span></span><span></span><span></span><span></span><span></span></div>
-      <div class="meta-bar">
-        <div class="meta"><span class="dot"></span><span id="meta-text">Brewing today's edition…</span></div>
-        <div class="actions">
-          <button class="btn btn-primary" id="btn-edit">Edit topics</button>
-          <button class="btn btn-ghost" id="btn-run">Generate now</button>
-        </div>
+<body class="show-login">
+
+  <!-- ========== LOGIN SCREEN ========== -->
+  <section class="screen screen-login" id="screen-login">
+    <h1 class="login-title">MORNING<br/>DIGEST</h1>
+    <button class="mug-wrap" id="login-mug" aria-label="Enter">
+      <!-- pixel mug SVG, ~48x40 logical pixels, scaled to 320 -->
+      <svg width="320" height="280" viewBox="0 0 48 42" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+        <!-- steam wisps -->
+        <g class="steam-wisp">
+          <rect x="14" y="2" width="2" height="2" fill="#f5e6d3"/>
+          <rect x="16" y="0" width="2" height="2" fill="#f5e6d3"/>
+          <rect x="14" y="4" width="2" height="2" fill="#f5e6d3" opacity="0.7"/>
+        </g>
+        <g class="steam-wisp w2">
+          <rect x="22" y="0" width="2" height="2" fill="#f5e6d3"/>
+          <rect x="24" y="2" width="2" height="2" fill="#f5e6d3"/>
+          <rect x="22" y="4" width="2" height="2" fill="#f5e6d3" opacity="0.7"/>
+        </g>
+        <g class="steam-wisp w3">
+          <rect x="30" y="2" width="2" height="2" fill="#f5e6d3"/>
+          <rect x="32" y="0" width="2" height="2" fill="#f5e6d3"/>
+          <rect x="30" y="4" width="2" height="2" fill="#f5e6d3" opacity="0.7"/>
+        </g>
+
+        <!-- mug body outline (rim line at y=10) -->
+        <!-- top rim, dark -->
+        <rect x="8"  y="10" width="32" height="2" fill="#3a1d0e"/>
+        <!-- inside coffee surface (just below rim) -->
+        <rect x="10" y="12" width="28" height="2" fill="#2a140a"/>
+        <rect x="10" y="14" width="28" height="1" fill="#4a2618"/>
+
+        <!-- mug walls left -->
+        <rect x="8"  y="12" width="2"  height="22" fill="#a87145"/>
+        <rect x="10" y="12" width="2"  height="22" fill="#d8a87a"/>
+        <!-- mug walls right -->
+        <rect x="36" y="12" width="2"  height="22" fill="#d8a87a"/>
+        <rect x="38" y="12" width="2"  height="22" fill="#a87145"/>
+        <!-- mug front (light face) -->
+        <rect x="12" y="15" width="24" height="19" fill="#c19a6b"/>
+        <!-- subtle banding -->
+        <rect x="12" y="22" width="24" height="1" fill="#a87145"/>
+
+        <!-- gold accent stripe (fantasy) -->
+        <rect x="12" y="26" width="24" height="2" fill="#f4c430"/>
+        <rect x="12" y="28" width="24" height="1" fill="#b8860b"/>
+
+        <!-- bottom of mug -->
+        <rect x="10" y="34" width="28" height="2" fill="#6b3a1f"/>
+        <rect x="12" y="36" width="24" height="1" fill="#3a1d0e"/>
+
+        <!-- handle -->
+        <rect x="40" y="16" width="2"  height="2" fill="#a87145"/>
+        <rect x="42" y="16" width="2"  height="14" fill="#a87145"/>
+        <rect x="44" y="18" width="2"  height="10" fill="#6b3a1f"/>
+        <rect x="40" y="28" width="2"  height="2" fill="#a87145"/>
+        <rect x="42" y="28" width="2"  height="2" fill="#a87145"/>
+        <!-- handle inside hole -->
+        <rect x="40" y="18" width="2"  height="10" fill="#1b0a2c"/>
+
+        <!-- highlight on mug (vertical white pixel column) -->
+        <rect x="14" y="16" width="1"  height="14" fill="#f5deb3" opacity="0.6"/>
+        <rect x="15" y="17" width="1"  height="3"  fill="#f5deb3" opacity="0.4"/>
+
+        <!-- saucer / shadow under mug -->
+        <rect x="6"  y="38" width="36" height="2" fill="#2a140a"/>
+        <rect x="4"  y="40" width="40" height="1" fill="#1b0a2c"/>
+      </svg>
+    </button>
+    <p class="login-sub">A pixelated dispatch from the world while you slept. Tap the mug.</p>
+    <p class="login-hint">▶ PRESS MUG TO ENTER</p>
+  </section>
+
+  <!-- ========== HOME SCREEN ========== -->
+  <section class="screen screen-home" id="screen-home">
+    <header class="home-header">
+      <div class="home-logo">
+        MORNING DIGEST
+        <span class="small" id="home-today">A new dawn</span>
+      </div>
+      <div class="home-actions">
+        <button class="pbtn pbtn-gold" id="btn-topics">▦ TOPICS</button>
+        <button class="pbtn pbtn-magenta" id="btn-sources">◈ SOURCES</button>
       </div>
     </header>
 
-    <main id="content">
-      <div class="topic skeleton"></div>
-      <div class="topic skeleton"></div>
-      <div class="topic skeleton"></div>
-    </main>
+    <div class="home-center">
+      <button class="mug-wrap" id="home-mug" aria-label="Read today's news">
+        <svg width="260" height="230" viewBox="0 0 48 42" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+          <g class="steam-wisp">
+            <rect x="14" y="2" width="2" height="2" fill="#f5e6d3"/>
+            <rect x="16" y="0" width="2" height="2" fill="#f5e6d3"/>
+          </g>
+          <g class="steam-wisp w2">
+            <rect x="22" y="0" width="2" height="2" fill="#f5e6d3"/>
+            <rect x="24" y="2" width="2" height="2" fill="#f5e6d3"/>
+          </g>
+          <g class="steam-wisp w3">
+            <rect x="30" y="2" width="2" height="2" fill="#f5e6d3"/>
+            <rect x="32" y="0" width="2" height="2" fill="#f5e6d3"/>
+          </g>
+          <rect x="8"  y="10" width="32" height="2" fill="#3a1d0e"/>
+          <rect x="10" y="12" width="28" height="2" fill="#2a140a"/>
+          <rect x="10" y="14" width="28" height="1" fill="#4a2618"/>
+          <rect x="8"  y="12" width="2"  height="22" fill="#a87145"/>
+          <rect x="10" y="12" width="2"  height="22" fill="#d8a87a"/>
+          <rect x="36" y="12" width="2"  height="22" fill="#d8a87a"/>
+          <rect x="38" y="12" width="2"  height="22" fill="#a87145"/>
+          <rect x="12" y="15" width="24" height="19" fill="#c19a6b"/>
+          <rect x="12" y="22" width="24" height="1" fill="#a87145"/>
+          <rect x="12" y="26" width="24" height="2" fill="#f4c430"/>
+          <rect x="12" y="28" width="24" height="1" fill="#b8860b"/>
+          <rect x="10" y="34" width="28" height="2" fill="#6b3a1f"/>
+          <rect x="12" y="36" width="24" height="1" fill="#3a1d0e"/>
+          <rect x="40" y="16" width="2"  height="2"  fill="#a87145"/>
+          <rect x="42" y="16" width="2"  height="14" fill="#a87145"/>
+          <rect x="44" y="18" width="2"  height="10" fill="#6b3a1f"/>
+          <rect x="40" y="28" width="2"  height="2"  fill="#a87145"/>
+          <rect x="42" y="28" width="2"  height="2"  fill="#a87145"/>
+          <rect x="40" y="18" width="2"  height="10" fill="#1b0a2c"/>
+          <rect x="14" y="16" width="1"  height="14" fill="#f5deb3" opacity="0.6"/>
+          <rect x="6"  y="38" width="36" height="2" fill="#2a140a"/>
+          <rect x="4"  y="40" width="40" height="1" fill="#1b0a2c"/>
+        </svg>
+      </button>
+      <div class="home-mug-label">▶ BREW TODAY'S NEWS</div>
+      <div class="home-mug-sub">Click the mug to read your morning briefing.</div>
+      <div class="home-meta" id="home-meta">Awaiting first digest…</div>
+    </div>
 
-    <footer>
-      <p>Generated nightly at 5:00 AM UTC · <a href="https://github.com/MatiusPod/morning-digest" target="_blank" rel="noopener">source</a></p>
+    <footer class="home-footer">
+      <div class="schedule-row">
+        <span class="schedule-label">⏰ DELIVERY</span>
+        <select class="pselect" id="hour-select" aria-label="Hour"></select>
+        <select class="pselect schedule-tz" id="tz-select" aria-label="Timezone"></select>
+        <button class="pbtn pbtn-gold" id="btn-save-schedule">SAVE</button>
+      </div>
+      <div class="footer-credit">
+        v0.2 · <a href="https://github.com/MatiusPod/morning-digest" target="_blank" rel="noopener">source</a>
+      </div>
     </footer>
-  </div>
+  </section>
 
-  <!-- Edit topics modal -->
-  <div class="overlay" id="edit-overlay">
+  <!-- ========== NEWS SCREEN ========== -->
+  <section class="screen screen-news" id="screen-news">
+    <header class="news-header">
+      <div>
+        <div class="news-title">▣ TODAY'S BRIEFING</div>
+        <div class="news-meta" id="news-meta">Brewing…</div>
+      </div>
+      <button class="pbtn pbtn-ghost" id="btn-back">◀ BACK</button>
+    </header>
+    <div class="topics" id="content">
+      <div class="empty">Brewing today's edition…</div>
+    </div>
+  </section>
+
+  <!-- ========== TOPICS MODAL ========== -->
+  <div class="overlay" id="topics-overlay">
     <div class="modal">
-      <h2>Edit topics</h2>
-      <p class="lead">Add, remove, or rewrite. Saving commits <code style="background:rgba(31,27,46,0.08);padding:1px 6px;border-radius:3px;font-size:0.86em;">topics.json</code> to your repo.</p>
-      <div class="topics-edit" id="topics-edit"></div>
+      <h2>EDIT TOPICS</h2>
+      <p class="lead">Add, remove, or rewrite. Saves to <code>config.json</code> in your repo.</p>
+      <div class="row-list" id="topics-edit"></div>
       <div class="add-row">
         <input type="text" id="new-topic" placeholder="e.g. Climate science breakthroughs" />
-        <button id="add-topic">+ Add</button>
+        <button id="add-topic">+ ADD</button>
       </div>
       <div class="modal-actions">
-        <button class="btn btn-light" id="cancel-edit">Cancel</button>
-        <button class="btn btn-dark" id="save-topics">Save</button>
-        <button class="btn btn-warm" id="save-and-run">Save &amp; generate</button>
+        <button class="mbtn mbtn-light" data-close>CANCEL</button>
+        <button class="mbtn" id="save-topics">SAVE</button>
       </div>
     </div>
   </div>
 
-  <!-- PAT setup modal -->
+  <!-- ========== SOURCES MODAL ========== -->
+  <div class="overlay" id="sources-overlay">
+    <div class="modal">
+      <h2>EDIT SOURCES</h2>
+      <p class="lead">Domain names only — e.g. <code>reuters.com</code>, <code>x.com</code>. Empty list = unrestricted search.</p>
+      <div class="row-list" id="sources-edit"></div>
+      <div class="add-row">
+        <input type="text" id="new-source" placeholder="e.g. theverge.com" />
+        <button id="add-source">+ ADD</button>
+      </div>
+      <div class="modal-actions">
+        <button class="mbtn mbtn-light" data-close>CANCEL</button>
+        <button class="mbtn" id="save-sources">SAVE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PAT MODAL ========== -->
   <div class="overlay" id="pat-overlay">
     <div class="modal">
-      <h2>One-time setup</h2>
+      <h2>ONE-TIME SETUP</h2>
       <p class="lead">To save changes from the browser, paste a fine-grained GitHub token. It is stored only in this browser.</p>
       <div class="pat-instructions">
         <ol>
@@ -444,7 +784,6 @@
           <li><strong>Repository permissions</strong>:
             <ul>
               <li><code>Contents</code>: <em>Read and write</em></li>
-              <li><code>Actions</code>: <em>Read and write</em></li>
             </ul>
           </li>
           <li>Click <em>Generate token</em>, copy it, paste below.</li>
@@ -452,8 +791,8 @@
       </div>
       <input type="password" class="pat-input" id="pat-input" placeholder="github_pat_..." autocomplete="off" spellcheck="false" />
       <div class="modal-actions">
-        <button class="btn btn-light" id="pat-cancel">Cancel</button>
-        <button class="btn btn-dark" id="pat-save">Save token</button>
+        <button class="mbtn mbtn-light" id="pat-cancel">CANCEL</button>
+        <button class="mbtn" id="pat-save">SAVE TOKEN</button>
       </div>
     </div>
   </div>
@@ -461,18 +800,45 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    /* ===================== Constants ===================== */
     const OWNER = "MatiusPod";
     const REPO = "morning-digest";
     const BRANCH = "main";
-    const TOPICS_PATH = "topics.json";
-    const WORKFLOW_FILE = "nightly.yml";
+    const CONFIG_PATH = "config.json";
 
     const ACCENTS = [
-      "var(--vermilion)", "var(--ochre)", "var(--teal)",
-      "var(--burnt)", "var(--royal)", "var(--sage)", "var(--plum)",
+      "#f4c430", "#cf3030", "#1e7e7e", "#b8336a", "#8a4fff", "#5a7d4f", "#d99a30",
+    ];
+
+    /* curated timezone list — Intl-detected zone is added on top if missing */
+    const COMMON_TZS = [
+      "UTC",
+      "Europe/London",
+      "Europe/Rome",
+      "Europe/Paris",
+      "Europe/Berlin",
+      "Europe/Madrid",
+      "Europe/Amsterdam",
+      "Europe/Stockholm",
+      "Europe/Athens",
+      "Africa/Cairo",
+      "Asia/Dubai",
+      "Asia/Kolkata",
+      "Asia/Singapore",
+      "Asia/Hong_Kong",
+      "Asia/Tokyo",
+      "Asia/Seoul",
+      "Australia/Sydney",
+      "Pacific/Auckland",
+      "America/New_York",
+      "America/Chicago",
+      "America/Denver",
+      "America/Los_Angeles",
+      "America/Sao_Paulo",
     ];
 
     const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
 
     function showToast(msg, kind) {
       const t = $("#toast");
@@ -484,14 +850,82 @@
       showToast._t = setTimeout(() => t.classList.remove("show"), 4000);
     }
 
-    /* ---------- Today label ---------- */
+    /* ===================== Screen routing ===================== */
+    function go(screen) {
+      document.body.classList.remove("show-login", "show-home", "show-news");
+      document.body.classList.add("show-" + screen);
+      window.scrollTo(0, 0);
+    }
+    $("#login-mug").addEventListener("click", () => go("home"));
+    $("#home-mug").addEventListener("click", () => go("news"));
+    $("#btn-back").addEventListener("click", () => go("home"));
+
+    /* ===================== Today label ===================== */
     (function setToday() {
       const now = new Date();
       const opts = { weekday: "long", month: "long", day: "numeric" };
-      $("#today").textContent = now.toLocaleDateString(undefined, opts);
+      $("#home-today").textContent = now.toLocaleDateString(undefined, opts);
     })();
 
-    /* ---------- Digest rendering ---------- */
+    /* ===================== Config (topics + sources + schedule) ===================== */
+    let config = { topics: [], sources: [], schedule: { hour: 7, timezone: "UTC" } };
+    const detectedTZ = (Intl.DateTimeFormat().resolvedOptions().timeZone) || "UTC";
+
+    async function loadConfig() {
+      try {
+        const r = await fetch(`https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${CONFIG_PATH}?t=` + Date.now());
+        if (!r.ok) throw new Error("no config");
+        const data = await r.json();
+        config = {
+          topics: Array.isArray(data.topics) ? data.topics : [],
+          sources: Array.isArray(data.sources) ? data.sources : [],
+          schedule: {
+            hour: Number.isInteger(data?.schedule?.hour) ? data.schedule.hour : 7,
+            timezone: typeof data?.schedule?.timezone === "string" ? data.schedule.timezone : "UTC",
+          },
+        };
+      } catch {
+        // fall back to defaults
+      }
+      hydrateScheduleControls();
+    }
+
+    function hydrateScheduleControls() {
+      const hourSel = $("#hour-select");
+      hourSel.innerHTML = "";
+      for (let h = 0; h < 24; h++) {
+        const o = document.createElement("option");
+        o.value = String(h);
+        o.textContent = String(h).padStart(2, "0") + ":00";
+        if (h === config.schedule.hour) o.selected = true;
+        hourSel.append(o);
+      }
+
+      const tzSel = $("#tz-select");
+      tzSel.innerHTML = "";
+      const list = [...COMMON_TZS];
+      // surface the user's persisted timezone
+      if (config.schedule.timezone && !list.includes(config.schedule.timezone)) {
+        list.unshift(config.schedule.timezone);
+      }
+      // surface the detected zone if it isn't already listed
+      if (detectedTZ && !list.includes(detectedTZ)) {
+        list.unshift(detectedTZ);
+      }
+      // if persisted is the seed "UTC" but the user has a real detected zone, pre-select detected
+      const preselect = (config.schedule.timezone === "UTC" && detectedTZ && detectedTZ !== "UTC")
+        ? detectedTZ
+        : config.schedule.timezone;
+      list.forEach(tz => {
+        const o = document.createElement("option");
+        o.value = tz;
+        o.textContent = tz + (tz === detectedTZ ? "  (you)" : "");
+        if (tz === preselect) o.selected = true;
+        tzSel.append(o);
+      });
+    }
+
+    /* ===================== Digest rendering ===================== */
     async function loadDigest() {
       try {
         const r = await fetch("digest.json?t=" + Date.now());
@@ -499,8 +933,9 @@
         const data = await r.json();
         renderDigest(data);
       } catch {
-        $("#content").innerHTML = '<div class="empty">No digest yet. Click <strong>Generate now</strong> to brew the first one. It takes ~3 minutes.</div>';
-        $("#meta-text").textContent = "Awaiting first digest";
+        $("#content").innerHTML = '<div class="empty">No digest yet. The first one will brew at the scheduled hour. ☕</div>';
+        $("#news-meta").textContent = "Awaiting first digest";
+        $("#home-meta").textContent = "Awaiting first digest";
       }
     }
 
@@ -513,15 +948,21 @@
       }
       root.innerHTML = "";
       topics.forEach((t, i) => root.append(renderTopic(t, i)));
-      $("#meta-text").textContent = formatGenerated(data.generated_at);
+      const meta = formatGenerated(data.generated_at);
+      $("#news-meta").textContent = meta;
+      $("#home-meta").textContent = meta;
     }
 
     function renderTopic(t, i) {
       const el = document.createElement("article");
       el.className = "topic";
-      el.dataset.num = String(i + 1).padStart(2, "0");
       el.style.setProperty("--accent", ACCENTS[i % ACCENTS.length]);
-      el.style.animationDelay = (i * 0.08) + "s";
+      el.style.animationDelay = (i * 0.06) + "s";
+
+      const num = document.createElement("span");
+      num.className = "num";
+      num.textContent = "EDITION " + String(i + 1).padStart(2, "0");
+      el.append(num);
 
       const h = document.createElement("h2");
       h.textContent = t.title;
@@ -533,7 +974,7 @@
       if (brief) {
         const label = document.createElement("div");
         label.className = "brief-label";
-        label.textContent = "The brief";
+        label.textContent = "▸ THE BRIEF";
         el.append(label);
         const p = document.createElement("p");
         p.className = "brief";
@@ -547,9 +988,8 @@
         stories.forEach(s => ul.append(renderStory(s)));
         el.append(ul);
       } else if (!brief && t.summary) {
-        // backwards-compatible render for old digest format
         const body = document.createElement("div");
-        body.className = "body";
+        body.className = "brief";
         body.innerHTML = linkify(t.summary);
         el.append(body);
       }
@@ -571,11 +1011,8 @@
         a.href = s.source_url;
         a.target = "_blank";
         a.rel = "noopener";
-        const name = (s.source_name || hostnameFrom(s.source_url) || "source").trim();
-        const arrow = document.createElement("span");
-        arrow.className = "arrow";
-        arrow.textContent = "→";
-        a.append(document.createTextNode(`Read at ${name} `), arrow);
+        const name = (s.source_name || hostnameFrom(s.source_url) || "source").trim().toUpperCase();
+        a.append(document.createTextNode(`READ AT ${name}`), document.createTextNode(" ▶"));
         li.append(a);
       }
       return li;
@@ -587,16 +1024,16 @@
     }
 
     function formatGenerated(s) {
-      if (!s) return "Fresh today";
+      if (!s) return "FRESH TODAY";
       const m = s.match(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}) UTC/);
-      if (!m) return "Brewed " + s;
+      if (!m) return "BREWED " + s;
       const d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]));
       const today = new Date();
       const sameDay = d.toDateString() === today.toDateString();
       const time = d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-      if (sameDay) return `Today's edition · brewed ${time}`;
+      if (sameDay) return `TODAY · BREWED ${time}`;
       const ymd = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
-      return `Last edition · ${ymd} · ${time}`;
+      return `LAST · ${ymd} · ${time}`.toUpperCase();
     }
 
     function linkify(text) {
@@ -605,7 +1042,7 @@
       return escaped.replace(/(https?:\/\/[^\s)<\]]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
     }
 
-    /* ---------- PAT management ---------- */
+    /* ===================== PAT management ===================== */
     const PAT_KEY = "md_github_pat";
     const getPAT = () => localStorage.getItem(PAT_KEY) || "";
     const setPAT = (v) => localStorage.setItem(PAT_KEY, v);
@@ -625,7 +1062,7 @@
         };
         $("#pat-save").onclick = () => {
           const v = $("#pat-input").value.trim();
-          if (!v) { showToast("Paste a token first", "error"); return; }
+          if (!v) { showToast("PASTE A TOKEN FIRST", "error"); return; }
           setPAT(v);
           cleanup();
           resolve(v);
@@ -634,7 +1071,7 @@
       });
     }
 
-    /* ---------- GitHub API ---------- */
+    /* ===================== GitHub API ===================== */
     async function gh(path, options = {}) {
       const pat = await ensurePAT();
       const r = await fetch(`https://api.github.com${path}`, {
@@ -651,7 +1088,7 @@
         throw new Error("Token rejected. Try again.");
       }
       if (r.status === 403) {
-        throw new Error("Token lacks permissions. Needs Contents + Actions: Read and write.");
+        throw new Error("Token lacks permissions. Needs Contents: Read and write.");
       }
       if (!r.ok && r.status !== 204) {
         const t = await r.text();
@@ -660,136 +1097,149 @@
       return r.status === 204 ? null : r.json();
     }
 
-    async function loadTopicsForEdit() {
-      try {
-        const r = await fetch(`https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${TOPICS_PATH}?t=` + Date.now());
-        const data = await r.json();
-        return Array.isArray(data.topics) ? data.topics : [];
-      } catch {
-        return [];
-      }
+    function b64encode(s) {
+      return btoa(unescape(encodeURIComponent(s)));
     }
 
-    async function saveTopics(topics) {
-      const meta = await gh(`/repos/${OWNER}/${REPO}/contents/${TOPICS_PATH}?ref=${BRANCH}`);
-      const body = JSON.stringify({ topics }, null, 2) + "\n";
+    async function saveConfig(nextConfig) {
+      const meta = await gh(`/repos/${OWNER}/${REPO}/contents/${CONFIG_PATH}?ref=${BRANCH}`);
+      const body = JSON.stringify(nextConfig, null, 2) + "\n";
       const content = b64encode(body);
-      await gh(`/repos/${OWNER}/${REPO}/contents/${TOPICS_PATH}`, {
+      await gh(`/repos/${OWNER}/${REPO}/contents/${CONFIG_PATH}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          message: `Update topics (${topics.length})`,
+          message: `Update config (${nextConfig.topics.length}t/${nextConfig.sources.length}s/${nextConfig.schedule.hour}h ${nextConfig.schedule.timezone})`,
           content,
           sha: meta.sha,
           branch: BRANCH,
         }),
       });
+      config = nextConfig;
     }
 
-    async function triggerWorkflow() {
-      await gh(`/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_FILE}/dispatches`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ref: BRANCH }),
-      });
-    }
-
-    function b64encode(s) {
-      return btoa(unescape(encodeURIComponent(s)));
-    }
-
-    /* ---------- Editor UI ---------- */
-    let editing = [];
-
-    function renderEditor() {
+    /* ===================== Topics editor ===================== */
+    let editingTopics = [];
+    function renderTopicsEditor() {
       const wrap = $("#topics-edit");
       wrap.innerHTML = "";
-      editing.forEach((t, i) => {
-        const row = document.createElement("div");
-        row.className = "topic-row";
-
-        const pip = document.createElement("span");
-        pip.className = "pip";
-        pip.style.background = ACCENTS[i % ACCENTS.length];
-
-        const inp = document.createElement("input");
-        inp.type = "text";
-        inp.value = t;
-        inp.addEventListener("input", e => { editing[i] = e.target.value; });
-
-        const x = document.createElement("button");
-        x.className = "x";
-        x.title = "Remove";
-        x.textContent = "×";
-        x.addEventListener("click", () => {
-          editing.splice(i, 1);
-          renderEditor();
-        });
-
-        row.append(pip, inp, x);
-        wrap.append(row);
+      editingTopics.forEach((t, i) => {
+        wrap.append(buildRow(t, i, ACCENTS[i % ACCENTS.length], (val) => editingTopics[i] = val, () => {
+          editingTopics.splice(i, 1); renderTopicsEditor();
+        }));
       });
     }
-
-    async function openEditor() {
-      $("#edit-overlay").classList.add("open");
-      $("#topics-edit").innerHTML = '<div class="empty" style="padding:18px;background:rgba(31,27,46,0.04);border:none;color:var(--ink-soft);">Loading…</div>';
-      editing = await loadTopicsForEdit();
-      renderEditor();
+    function openTopics() {
+      editingTopics = [...config.topics];
+      renderTopicsEditor();
+      $("#topics-overlay").classList.add("open");
     }
-    const closeEditor = () => $("#edit-overlay").classList.remove("open");
-
-    $("#btn-edit").addEventListener("click", openEditor);
-    $("#cancel-edit").addEventListener("click", closeEditor);
-
+    $("#btn-topics").addEventListener("click", openTopics);
     $("#add-topic").addEventListener("click", () => {
       const v = $("#new-topic").value.trim();
       if (!v) return;
-      editing.push(v);
+      editingTopics.push(v);
       $("#new-topic").value = "";
-      renderEditor();
+      renderTopicsEditor();
     });
     $("#new-topic").addEventListener("keydown", e => {
       if (e.key === "Enter") { e.preventDefault(); $("#add-topic").click(); }
     });
-
-    async function doSave(alsoRun) {
-      const topics = editing.map(t => t.trim()).filter(Boolean);
-      if (!topics.length) { showToast("Add at least one topic", "error"); return; }
+    $("#save-topics").addEventListener("click", async () => {
+      const topics = editingTopics.map(t => t.trim()).filter(Boolean);
+      if (!topics.length) { showToast("ADD AT LEAST ONE TOPIC", "error"); return; }
       try {
-        showToast("Saving…");
-        await saveTopics(topics);
-        if (alsoRun) {
-          showToast("Saved. Triggering workflow…");
-          await triggerWorkflow();
-          showToast("Done. Digest refreshes in ~3 minutes.", "success");
-        } else {
-          showToast("Topics saved.", "success");
-        }
-        closeEditor();
+        showToast("SAVING…");
+        await saveConfig({ ...config, topics });
+        showToast("TOPICS SAVED.", "success");
+        $("#topics-overlay").classList.remove("open");
       } catch (e) {
         if (e.message === "cancelled") return;
-        showToast(e.message || "Something went wrong", "error");
-      }
-    }
-
-    $("#save-topics").addEventListener("click", () => doSave(false));
-    $("#save-and-run").addEventListener("click", () => doSave(true));
-
-    $("#btn-run").addEventListener("click", async () => {
-      try {
-        showToast("Triggering workflow…");
-        await triggerWorkflow();
-        showToast("Workflow queued. Refresh in ~3 minutes.", "success");
-      } catch (e) {
-        if (e.message === "cancelled") return;
-        showToast(e.message || "Something went wrong", "error");
+        showToast(e.message || "SOMETHING WENT WRONG", "error");
       }
     });
 
-    /* close overlays on backdrop click */
+    /* ===================== Sources editor ===================== */
+    let editingSources = [];
+    function renderSourcesEditor() {
+      const wrap = $("#sources-edit");
+      wrap.innerHTML = "";
+      editingSources.forEach((s, i) => {
+        wrap.append(buildRow(s, i, ACCENTS[i % ACCENTS.length], (val) => editingSources[i] = val, () => {
+          editingSources.splice(i, 1); renderSourcesEditor();
+        }));
+      });
+    }
+    function openSources() {
+      editingSources = [...config.sources];
+      renderSourcesEditor();
+      $("#sources-overlay").classList.add("open");
+    }
+    $("#btn-sources").addEventListener("click", openSources);
+    $("#add-source").addEventListener("click", () => {
+      const v = $("#new-source").value.trim().replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+      if (!v) return;
+      editingSources.push(v);
+      $("#new-source").value = "";
+      renderSourcesEditor();
+    });
+    $("#new-source").addEventListener("keydown", e => {
+      if (e.key === "Enter") { e.preventDefault(); $("#add-source").click(); }
+    });
+    $("#save-sources").addEventListener("click", async () => {
+      const sources = editingSources.map(s => s.trim()).filter(Boolean);
+      try {
+        showToast("SAVING…");
+        await saveConfig({ ...config, sources });
+        showToast("SOURCES SAVED.", "success");
+        $("#sources-overlay").classList.remove("open");
+      } catch (e) {
+        if (e.message === "cancelled") return;
+        showToast(e.message || "SOMETHING WENT WRONG", "error");
+      }
+    });
+
+    /* ===================== Schedule save ===================== */
+    $("#btn-save-schedule").addEventListener("click", async () => {
+      const hour = parseInt($("#hour-select").value, 10);
+      const timezone = $("#tz-select").value;
+      if (!Number.isInteger(hour) || !timezone) { showToast("PICK HOUR + TZ", "error"); return; }
+      try {
+        showToast("SAVING…");
+        await saveConfig({ ...config, schedule: { hour, timezone } });
+        showToast("SCHEDULE SAVED.", "success");
+      } catch (e) {
+        if (e.message === "cancelled") return;
+        showToast(e.message || "SOMETHING WENT WRONG", "error");
+      }
+    });
+
+    /* ===================== Reusable row builder ===================== */
+    function buildRow(value, i, color, onInput, onRemove) {
+      const row = document.createElement("div");
+      row.className = "row";
+      const pip = document.createElement("span");
+      pip.className = "pip";
+      pip.style.background = color;
+      const inp = document.createElement("input");
+      inp.type = "text";
+      inp.value = value;
+      inp.addEventListener("input", e => onInput(e.target.value));
+      const x = document.createElement("button");
+      x.className = "x";
+      x.title = "Remove";
+      x.textContent = "X";
+      x.addEventListener("click", onRemove);
+      row.append(pip, inp, x);
+      return row;
+    }
+
+    /* ===================== Modal close handlers ===================== */
     document.querySelectorAll(".overlay").forEach(o => {
       o.addEventListener("click", e => { if (e.target === o) o.classList.remove("open"); });
+    });
+    document.querySelectorAll("[data-close]").forEach(b => {
+      b.addEventListener("click", () => b.closest(".overlay").classList.remove("open"));
     });
     document.addEventListener("keydown", e => {
       if (e.key === "Escape") {
@@ -797,6 +1247,8 @@
       }
     });
 
+    /* ===================== Boot ===================== */
+    loadConfig();
     loadDigest();
   </script>
 </body>

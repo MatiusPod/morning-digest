@@ -1,36 +1,66 @@
-  name: Nightly Digest                                                                                                                                                                                        
-                                                                                   
-  on:                     
-    schedule:                   
-      - cron: '0 5 * * *'   # runs every day at 5:00 AM UTC
-    workflow_dispatch:        # allows you to run it manually too
-                            
-  permissions:                           
-    contents: write                                                                                                                                                                                           
-                                
-  jobs:                                                                                                                                                                                                       
-    fetch:                                                                         
-      runs-on: ubuntu-latest                                                                                                                                                                                  
-      steps:
-        - uses: actions/checkout@v4                                                                                                                                                                           
-                                                                                   
-        - name: Set up Python                                                                                                                                                                                 
-          uses: actions/setup-python@v5                                            
-          with:              
-            python-version: '3.11'
-                            
-        - name: Install dependencies
-          run: pip install anthropic                                                                                                                                                                          
-                                         
-        - name: Run fetch script                                                                                                                                                                              
-          env:                                                                     
-            ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          run: python fetch_news.py      
-                            
-        - name: Commit digest.json
-          run: |                                                                                                                                                                                              
-            git config user.name "github-actions"
-            git config user.email "actions@github.com"                                                                                                                                                        
-            git add digest.json                                                    
-            git commit -m "Daily digest $(date +'%Y-%m-%d')" || echo "No changes"                                                                                                                             
-            git push   
+name: Nightly Digest
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # runs every hour; the time-gate step decides whether to actually run
+  workflow_dispatch:        # allows manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Time gate
+        id: gate
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          event = os.environ.get("GITHUB_EVENT_NAME", "")
+          should_run = event == "workflow_dispatch"
+
+          if not should_run:
+              with open("config.json") as f:
+                  cfg = json.load(f)
+              tz = cfg.get("schedule", {}).get("timezone", "UTC")
+              hour = int(cfg.get("schedule", {}).get("hour", 7))
+              now_hour = datetime.now(ZoneInfo(tz)).hour
+              should_run = (now_hour == hour)
+              print(f"tz={tz} target_hour={hour} now_hour={now_hour} should_run={should_run}")
+          else:
+              print("workflow_dispatch -> bypassing time gate")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a") as out:
+              out.write(f"should_run={'true' if should_run else 'false'}\n")
+          PY
+
+      - name: Set up Python
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_run == 'true'
+        run: pip install anthropic
+
+      - name: Run fetch script
+        if: steps.gate.outputs.should_run == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python fetch_news.py
+
+      - name: Commit digest.json
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add digest.json
+          git commit -m "Daily digest $(date +'%Y-%m-%d')" || echo "No changes"
+          git push
