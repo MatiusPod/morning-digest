@@ -25,16 +25,37 @@ jobs:
           event = os.environ.get("GITHUB_EVENT_NAME", "")
           should_run = event == "workflow_dispatch"
 
-          if not should_run:
+          if should_run:
+              print("workflow_dispatch -> bypassing time gate")
+          else:
               with open("config.json") as f:
                   cfg = json.load(f)
-              tz = cfg.get("schedule", {}).get("timezone", "UTC")
-              hour = int(cfg.get("schedule", {}).get("hour", 7))
-              now_hour = datetime.now(ZoneInfo(tz)).hour
-              should_run = (now_hour == hour)
-              print(f"tz={tz} target_hour={hour} now_hour={now_hour} should_run={should_run}")
-          else:
-              print("workflow_dispatch -> bypassing time gate")
+              tz_name = cfg.get("schedule", {}).get("timezone", "UTC")
+              target_hour = int(cfg.get("schedule", {}).get("hour", 7))
+              tz = ZoneInfo(tz_name)
+              now = datetime.now(tz)
+              today_local = now.date()
+
+              # Find the local date of the most recent successful digest, so we
+              # only fire once per local day even if cron is delayed past the hour.
+              last_local = None
+              try:
+                  with open("digest.json") as f:
+                      d = json.load(f)
+                  generated = d.get("generated_at", "")
+                  gen_utc = datetime.strptime(generated, "%Y-%m-%d %H:%M UTC").replace(tzinfo=ZoneInfo("UTC"))
+                  last_local = gen_utc.astimezone(tz).date()
+              except Exception as e:
+                  print(f"no readable previous digest ({e!r}); treating last_local as never")
+
+              already_today = (last_local == today_local)
+              should_run = (now.hour >= target_hour) and not already_today
+              print(
+                  f"tz={tz_name} target_hour={target_hour} "
+                  f"now={now.isoformat()} today_local={today_local} "
+                  f"last_local={last_local} already_today={already_today} "
+                  f"should_run={should_run}"
+              )
 
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
               out.write(f"should_run={'true' if should_run else 'false'}\n")
