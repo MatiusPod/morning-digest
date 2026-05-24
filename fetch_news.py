@@ -6,12 +6,6 @@ from datetime import datetime, timedelta, timezone
 
 from anthropic import Anthropic, BadRequestError, RateLimitError
 
-ICON_ENUM = [
-    "chip", "robot", "brain", "rocket", "coin", "server",
-    "flask", "shield", "chat", "bolt", "gear", "eye",
-    "atom", "dna", "satellite", "default",
-]
-
 MODEL = "claude-haiku-4-5-20251001"
 
 CONFIG_PATH = "config.json"
@@ -20,6 +14,18 @@ CONFIG_PATH = "config.json"
 def load_config():
     with open(CONFIG_PATH) as f:
         return json.load(f)
+
+
+def topic_title(entry):
+    if isinstance(entry, dict):
+        return (entry.get("title") or "").strip() or "(untitled topic)"
+    return str(entry).strip() or "(untitled topic)"
+
+
+def topic_focus(entry):
+    if isinstance(entry, dict):
+        return (entry.get("focus") or "").strip()
+    return ""
 
 
 def build_web_search(sources):
@@ -59,6 +65,22 @@ def _strip_blocked(tools, blocked):
             out.append(t)
     return out
 
+
+PIXEL_ART_EXAMPLE = (
+    "............\n"
+    "............\n"
+    "....####....\n"
+    "...#....#...\n"
+    "..#.####.#..\n"
+    "..#.####.#..\n"
+    "..#......#..\n"
+    "...#....#...\n"
+    "....####....\n"
+    "............\n"
+    "............\n"
+    "............"
+)
+
 SUBMIT = {
     "name": "submit_digest",
     "description": (
@@ -72,7 +94,7 @@ SUBMIT = {
                 "type": "string",
                 "description": (
                     "One or two crisp sentences capturing the most important "
-                    "development in this topic over the last 24-48 hours. "
+                    "development in this topic over the last 24 hours. "
                     "Plain English, no hedging, no fluff."
                 ),
             },
@@ -106,7 +128,7 @@ SUBMIT = {
                             "type": "string",
                             "description": (
                                 "Publisher name, e.g. 'TechCrunch', "
-                                "'Bloomberg', 'The Decoder'."
+                                "'VentureBeat', 'The Decoder'."
                             ),
                         },
                         "published_at": {
@@ -118,30 +140,28 @@ SUBMIT = {
                                 "last 24 hours of the current UTC time."
                             ),
                         },
-                        "icon": {
+                        "pixel_art": {
                             "type": "string",
-                            "enum": ICON_ENUM,
                             "description": (
-                                "Pixel-art icon category that best represents "
-                                "the story. Pick the single best fit: "
-                                "chip (silicon/hardware), robot (robotics/"
-                                "agents), brain (research/cognition), rocket "
-                                "(launch/announcement), coin (funding/M&A), "
-                                "server (infra/datacenter/cloud), flask "
-                                "(science/lab), shield (safety/security/"
-                                "regulation), chat (chatbot/LLM/assistant), "
-                                "bolt (speed/breakthrough/benchmark), gear "
-                                "(engineering/tooling), eye (vision/perception/"
-                                "multimodal), atom (deep tech/quantum/"
-                                "materials), dna (biotech/health), satellite "
-                                "(space/communications), default (only if "
-                                "nothing else fits)."
+                                "A SIMPLE pixel-art silhouette you draw "
+                                "yourself, representing the most concrete "
+                                "subject of the story (a chip, a coin, a "
+                                "robot, a flask, a rocket, a brain, a "
+                                "datacenter rack, a satellite, etc.). "
+                                "Format: EXACTLY 12 lines separated by '\\n', "
+                                "each line EXACTLY 12 characters. Use '#' "
+                                "for filled pixels (foreground) and '.' for "
+                                "transparent background. Single colour "
+                                "silhouette only — keep it chunky and "
+                                "readable at small size. Centre the subject "
+                                "with some empty padding around it. Example "
+                                "for a gear-with-hole:\n" + PIXEL_ART_EXAMPLE
                             ),
                         },
                     },
                     "required": [
                         "headline", "body", "source_url",
-                        "source_name", "icon",
+                        "source_name", "pixel_art",
                     ],
                 },
             },
@@ -154,15 +174,16 @@ SUBMIT = {
 SYSTEM = (
     "You are a Morning Brew-style editor producing an executive briefing. "
     "Tone: clear, conversational, lightly witty, no jargon, no filler. "
-    "Workflow per topic: (1) one web_search for the most important news "
-    "from the last 24 hours, (2) call submit_digest exactly once. "
+    "Workflow per topic: (1) one web_search shaped by the topic's focus, "
+    "(2) call submit_digest exactly once. "
     "HARD RULES: "
     "(a) Every story MUST be published within the last 24 hours of the "
     "current UTC time given. Drop anything stale or unconfirmed — fewer "
     "stories is fine, zero is fine. "
     "(b) Every source_url MUST be a real URL that appeared in your "
     "web_search results — never invent, guess, or extrapolate URLs. "
-    "(c) For each story set `icon` to the single best-fit category. "
+    "(c) For each story draw a simple 12x12 `pixel_art` silhouette of the "
+    "story's most concrete subject (use '#' for filled, '.' for empty). "
     "(d) If NO story passes the 24h bar, still call submit_digest, with "
     "stories=[] and executive_summary EXACTLY (substituting a natural "
     "topic phrase for {TOPIC}): "
@@ -170,13 +191,13 @@ SYSTEM = (
     "could be confirmed through search results, suggesting a quiet day "
     "in the sector.\" "
     "Examples of {TOPIC} substitution: Startups → \"startup\"; "
-    "Deep Tech → \"deep tech\"; AI infrastructure news → "
-    "\"AI infrastructure\"; AI announcements & new models → "
-    "\"AI announcement or new model\"."
+    "Deep Tech → \"deep tech\"; AI Infrastructure → "
+    "\"AI infrastructure\"; AI Announcements → \"AI announcement\"."
 )
 
 USER_TMPL = (
-    "Topic: {topic}\n"
+    "Topic: {title}\n"
+    "{focus_line}"
     "Current UTC time: {now_utc}\n"
     "Window: include ONLY stories published since {since_utc} "
     "(strictly the last 24 hours).\n\n"
@@ -187,14 +208,17 @@ USER_TMPL = (
 client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
 
-def fetch_topic(topic, tools):
+def fetch_topic(entry, tools):
     """Return (result_dict, tools). The returned tools may have lost
     domains that block Anthropic's crawler, so the caller should reuse
     it for subsequent topics to avoid hitting the same 400 again."""
+    title = topic_title(entry)
+    focus = topic_focus(entry)
     now = datetime.now(timezone.utc)
     since = now - timedelta(hours=24)
     user_msg = USER_TMPL.format(
-        topic=topic,
+        title=title,
+        focus_line=(f"Focus: {focus}\n" if focus else ""),
         now_utc=now.strftime("%Y-%m-%d %H:%M UTC"),
         since_utc=since.strftime("%Y-%m-%d %H:%M UTC"),
     )
@@ -202,7 +226,7 @@ def fetch_topic(topic, tools):
         try:
             response = client.messages.create(
                 model=MODEL,
-                max_tokens=1024,
+                max_tokens=1536,
                 system=SYSTEM,
                 tools=tools,
                 messages=[{"role": "user", "content": user_msg}],
@@ -225,7 +249,7 @@ def fetch_topic(topic, tools):
                 raise
             print(f"Sites blocking Anthropic web_search: {blocked}; pruning and retrying")
             tools = _strip_blocked(tools, blocked)
-    raise RuntimeError(f"Failed too many times for topic: {topic}")
+    raise RuntimeError(f"Failed too many times for topic: {title}")
 
 
 def main():
@@ -239,13 +263,14 @@ def main():
         "topics": [],
     }
 
-    for i, topic in enumerate(topics):
+    for i, entry in enumerate(topics):
         if i > 0:
             time.sleep(30)
-        print(f"Fetching: {topic}")
-        result, tools = fetch_topic(topic, tools)
+        title = topic_title(entry)
+        print(f"Fetching: {title}")
+        result, tools = fetch_topic(entry, tools)
         digest["topics"].append({
-            "title": topic,
+            "title": title,
             "executive_summary": result.get("executive_summary", ""),
             "stories": result.get("stories", []),
         })

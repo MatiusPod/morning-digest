@@ -1,22 +1,37 @@
 {
   "topics": [
-    "AI announcements & new models",
-    "Startups",
-    "AI infrastructure news",
-    "Deep Tech"
+    {
+      "title": "AI Announcements",
+      "focus": "corporate launches, product reveals, partnerships, executive moves, and other big-company AI announcements from OpenAI, Anthropic, Google, Meta, Microsoft, Amazon, Apple, xAI, etc."
+    },
+    {
+      "title": "Startups",
+      "focus": "AI startup funding rounds — seed, Series A/B/C, growth rounds, valuations, lead investors, M&A. Always include the round size and stage when known."
+    },
+    {
+      "title": "AI Infrastructure",
+      "focus": "chips, GPUs, accelerators, datacenters, cloud capacity, training systems, model serving, networking, and AI hardware/software stack news."
+    },
+    {
+      "title": "Deep Tech",
+      "focus": "scientific discoveries and disruptive research breakthroughs — physics, materials science, biotech, neuroscience, energy, fusion, quantum, robotics, space tech. Favor primary research results over commentary."
+    }
   ],
   "sources": [
     "techcrunch.com",
-    "bloomberg.com",
     "axios.com",
-    "x.com",
     "venturebeat.com",
     "the-decoder.com",
-    "technologyreview.com",
-    "semianalysis.com",
+    "theregister.com",
     "spectrum.ieee.org",
-    "wired.com",
-    "theregister.com"
+    "semianalysis.com",
+    "quantamagazine.org",
+    "phys.org",
+    "sciencedaily.com",
+    "aibusiness.com",
+    "tech.eu",
+    "restofworld.org",
+    "x.com"
   ],
   "schedule": {
     "hour": 8,

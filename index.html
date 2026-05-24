@@ -874,10 +874,7 @@
         Morning Digest
         <span class="small" id="home-today">A new dawn</span>
       </div>
-      <div class="home-actions">
-        <button class="pbtn" id="btn-topics">❖ Topics</button>
-        <button class="pbtn pbtn-violet" id="btn-sources">✦ Sources</button>
-      </div>
+      <div class="home-actions"></div>
     </header>
 
     <div class="home-center">
@@ -950,40 +947,6 @@
       <div class="empty">Brewing today's edition…</div>
     </div>
   </section>
-
-  <!-- ========== TOPICS MODAL ========== -->
-  <div class="overlay" id="topics-overlay">
-    <div class="modal">
-      <h2>Edit Topics</h2>
-      <p class="lead">Add, remove, or rewrite. Saves to <code>config.json</code> in your repo.</p>
-      <div class="row-list" id="topics-edit"></div>
-      <div class="add-row">
-        <input type="text" id="new-topic" placeholder="e.g. Climate science breakthroughs" />
-        <button id="add-topic">+ Add</button>
-      </div>
-      <div class="modal-actions">
-        <button class="mbtn mbtn-light" data-close>Cancel</button>
-        <button class="mbtn" id="save-topics">Save</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== SOURCES MODAL ========== -->
-  <div class="overlay" id="sources-overlay">
-    <div class="modal">
-      <h2>Edit Sources</h2>
-      <p class="lead">Domain names only — e.g. <code>reuters.com</code>, <code>x.com</code>. Empty list = unrestricted search.</p>
-      <div class="row-list" id="sources-edit"></div>
-      <div class="add-row">
-        <input type="text" id="new-source" placeholder="e.g. theverge.com" />
-        <button id="add-source">+ Add</button>
-      </div>
-      <div class="modal-actions">
-        <button class="mbtn mbtn-light" data-close>Cancel</button>
-        <button class="mbtn" id="save-sources">Save</button>
-      </div>
-    </div>
-  </div>
 
   <!-- ========== PAT MODAL ========== -->
   <div class="overlay" id="pat-overlay">
@@ -1350,6 +1313,35 @@
       return PIXEL_ICONS[key] || PIXEL_ICONS.default;
     }
 
+    /* Build an SVG from a model-drawn pixel-art grid.
+       Input: string of N lines (split by \n), each line of M characters.
+       '#' (or any non '.'/' ') = filled in currentColor, '.'/' ' = transparent.
+       Adjacent filled cells in the same row are coalesced into wider rects. */
+    function renderPixelArt(raw) {
+      if (typeof raw !== "string") return null;
+      const rows = raw.replace(/\r/g, "").split("\n").filter(r => r.length > 0);
+      if (!rows.length) return null;
+      const w = Math.max(...rows.map(r => r.length));
+      const h = rows.length;
+      if (w < 4 || h < 4 || w > 64 || h > 64) return null;
+      const rects = [];
+      for (let y = 0; y < h; y++) {
+        const row = rows[y];
+        let runStart = -1;
+        for (let x = 0; x <= w; x++) {
+          const ch = x < row.length ? row[x] : ".";
+          const filled = ch !== "." && ch !== " ";
+          if (filled && runStart === -1) runStart = x;
+          if (!filled && runStart !== -1) {
+            rects.push(_r(runStart, y, x - runStart, 1));
+            runStart = -1;
+          }
+        }
+      }
+      if (!rects.length) return null;
+      return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" fill="currentColor" shape-rendering="crispEdges">${rects.join("")}</svg>`;
+    }
+
     function formatStoryDate(raw) {
       if (!raw) return "";
       const d = new Date(raw);
@@ -1366,7 +1358,8 @@
 
       const iconWrap = document.createElement("div");
       iconWrap.className = "story-icon";
-      iconWrap.innerHTML = pixelIconFor(s.icon);
+      iconWrap.innerHTML =
+        renderPixelArt(s.pixel_art) || pixelIconFor(s.icon);
 
       const text = document.createElement("div");
       text.className = "story-text";
@@ -1502,87 +1495,6 @@
       });
       config = nextConfig;
     }
-
-    /* ===================== Topics editor ===================== */
-    let editingTopics = [];
-    function renderTopicsEditor() {
-      const wrap = $("#topics-edit");
-      wrap.innerHTML = "";
-      editingTopics.forEach((t, i) => {
-        wrap.append(buildRow(t, i, ACCENTS[i % ACCENTS.length], (val) => editingTopics[i] = val, () => {
-          editingTopics.splice(i, 1); renderTopicsEditor();
-        }));
-      });
-    }
-    function openTopics() {
-      editingTopics = [...config.topics];
-      renderTopicsEditor();
-      $("#topics-overlay").classList.add("open");
-    }
-    $("#btn-topics").addEventListener("click", openTopics);
-    $("#add-topic").addEventListener("click", () => {
-      const v = $("#new-topic").value.trim();
-      if (!v) return;
-      editingTopics.push(v);
-      $("#new-topic").value = "";
-      renderTopicsEditor();
-    });
-    $("#new-topic").addEventListener("keydown", e => {
-      if (e.key === "Enter") { e.preventDefault(); $("#add-topic").click(); }
-    });
-    $("#save-topics").addEventListener("click", async () => {
-      const topics = editingTopics.map(t => t.trim()).filter(Boolean);
-      if (!topics.length) { showToast("Add at least one topic", "error"); return; }
-      try {
-        showToast("Saving…");
-        await saveConfig({ ...config, topics });
-        showToast("Topics saved", "success");
-        $("#topics-overlay").classList.remove("open");
-      } catch (e) {
-        if (e.message === "cancelled") return;
-        showToast(e.message || "Something went wrong", "error");
-      }
-    });
-
-    /* ===================== Sources editor ===================== */
-    let editingSources = [];
-    function renderSourcesEditor() {
-      const wrap = $("#sources-edit");
-      wrap.innerHTML = "";
-      editingSources.forEach((s, i) => {
-        wrap.append(buildRow(s, i, ACCENTS[i % ACCENTS.length], (val) => editingSources[i] = val, () => {
-          editingSources.splice(i, 1); renderSourcesEditor();
-        }));
-      });
-    }
-    function openSources() {
-      editingSources = [...config.sources];
-      renderSourcesEditor();
-      $("#sources-overlay").classList.add("open");
-    }
-    $("#btn-sources").addEventListener("click", openSources);
-    $("#add-source").addEventListener("click", () => {
-      const v = $("#new-source").value.trim().replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
-      if (!v) return;
-      editingSources.push(v);
-      $("#new-source").value = "";
-      renderSourcesEditor();
-    });
-    $("#new-source").addEventListener("keydown", e => {
-      if (e.key === "Enter") { e.preventDefault(); $("#add-source").click(); }
-    });
-    $("#save-sources").addEventListener("click", async () => {
-      const sources = editingSources.map(s => s.trim()).filter(Boolean);
-      try {
-        showToast("Saving…");
-        await saveConfig({ ...config, sources });
-        showToast("Sources saved", "success");
-        $("#sources-overlay").classList.remove("open");
-      } catch (e) {
-        if (e.message === "cancelled") return;
-        showToast(e.message || "Something went wrong", "error");
-      }
-    });
 
     /* ===================== Schedule save ===================== */
     $("#btn-save-schedule").addEventListener("click", async () => {
