@@ -1,10 +1,9 @@
 import json
 import os
-import re
 import time
 from datetime import datetime, timedelta, timezone
 
-from anthropic import Anthropic, BadRequestError, RateLimitError
+from anthropic import Anthropic, RateLimitError
 
 MODEL = "claude-haiku-4-5-20251001"
 
@@ -28,42 +27,15 @@ def topic_focus(entry):
     return ""
 
 
-def build_web_search(sources):
-    tool = {
+def build_web_search():
+    """Open-web search — no allowed_domains. Configured sources are passed
+    into the prompt as a soft preference, so the model can search anywhere
+    when none of the preferred publishers have the story."""
+    return {
         "type": "web_search_20250305",
         "name": "web_search",
         "max_uses": 1,
     }
-    if sources:
-        tool["allowed_domains"] = sources
-    return tool
-
-
-_BLOCKED_DOMAINS_RE = re.compile(r"not accessible to our user agent:\s*\[([^\]]+)\]")
-
-
-def _parse_blocked_domains(message):
-    m = _BLOCKED_DOMAINS_RE.search(message)
-    if not m:
-        return []
-    return [d.strip().strip("'\"") for d in m.group(1).split(",") if d.strip()]
-
-
-def _strip_blocked(tools, blocked):
-    blocked_set = set(blocked)
-    out = []
-    for t in tools:
-        if t.get("type") == "web_search_20250305" and "allowed_domains" in t:
-            kept = [d for d in t["allowed_domains"] if d not in blocked_set]
-            nt = dict(t)
-            if kept:
-                nt["allowed_domains"] = kept
-            else:
-                nt.pop("allowed_domains", None)
-            out.append(nt)
-        else:
-            out.append(t)
-    return out
 
 
 PIXEL_ART_EXAMPLE = (
@@ -198,6 +170,7 @@ SYSTEM = (
 USER_TMPL = (
     "Topic: {title}\n"
     "{focus_line}"
+    "{sources_line}"
     "Current UTC time: {now_utc}\n"
     "Window: include ONLY stories published since {since_utc} "
     "(strictly the last 24 hours).\n\n"
@@ -208,17 +181,22 @@ USER_TMPL = (
 client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
 
-def fetch_topic(entry, tools):
-    """Return (result_dict, tools). The returned tools may have lost
-    domains that block Anthropic's crawler, so the caller should reuse
-    it for subsequent topics to avoid hitting the same 400 again."""
+def fetch_topic(entry, tools, sources):
     title = topic_title(entry)
     focus = topic_focus(entry)
     now = datetime.now(timezone.utc)
     since = now - timedelta(hours=24)
+    sources_line = ""
+    if sources:
+        sources_line = (
+            "Preferred publishers (try these first, but search the wider "
+            "web freely if none of them have the story): "
+            + ", ".join(sources) + "\n"
+        )
     user_msg = USER_TMPL.format(
         title=title,
         focus_line=(f"Focus: {focus}\n" if focus else ""),
+        sources_line=sources_line,
         now_utc=now.strftime("%Y-%m-%d %H:%M UTC"),
         since_utc=since.strftime("%Y-%m-%d %H:%M UTC"),
     )
@@ -233,22 +211,16 @@ def fetch_topic(entry, tools):
             )
             for block in response.content:
                 if getattr(block, "type", None) == "tool_use" and block.name == "submit_digest":
-                    return block.input, tools
+                    return block.input
             text = "\n\n".join(
                 b.text for b in response.content
                 if getattr(b, "type", None) == "text" and getattr(b, "text", None)
             ).strip()
-            return {"executive_summary": text, "stories": []}, tools
+            return {"executive_summary": text, "stories": []}
         except RateLimitError:
             wait = 60 * (attempt + 1)
             print(f"Rate limited; sleeping {wait}s before retry...")
             time.sleep(wait)
-        except BadRequestError as e:
-            blocked = _parse_blocked_domains(str(e))
-            if not blocked:
-                raise
-            print(f"Sites blocking Anthropic web_search: {blocked}; pruning and retrying")
-            tools = _strip_blocked(tools, blocked)
     raise RuntimeError(f"Failed too many times for topic: {title}")
 
 
@@ -256,7 +228,7 @@ def main():
     cfg = load_config()
     topics = cfg.get("topics", [])
     sources = cfg.get("sources", []) or []
-    tools = [build_web_search(sources), SUBMIT]
+    tools = [build_web_search(), SUBMIT]
 
     digest = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
@@ -268,7 +240,7 @@ def main():
             time.sleep(30)
         title = topic_title(entry)
         print(f"Fetching: {title}")
-        result, tools = fetch_topic(entry, tools)
+        result = fetch_topic(entry, tools, sources)
         digest["topics"].append({
             "title": title,
             "executive_summary": result.get("executive_summary", ""),
