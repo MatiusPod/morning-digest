@@ -1,9 +1,10 @@
 import json
 import os
+import re
 import time
 from datetime import datetime, timezone
 
-from anthropic import Anthropic, RateLimitError
+from anthropic import Anthropic, BadRequestError, RateLimitError
 
 MODEL = "claude-sonnet-4-5"
 
@@ -24,6 +25,33 @@ def build_web_search(sources):
     if sources:
         tool["allowed_domains"] = sources
     return tool
+
+
+_BLOCKED_DOMAINS_RE = re.compile(r"not accessible to our user agent:\s*\[([^\]]+)\]")
+
+
+def _parse_blocked_domains(message):
+    m = _BLOCKED_DOMAINS_RE.search(message)
+    if not m:
+        return []
+    return [d.strip().strip("'\"") for d in m.group(1).split(",") if d.strip()]
+
+
+def _strip_blocked(tools, blocked):
+    blocked_set = set(blocked)
+    out = []
+    for t in tools:
+        if t.get("type") == "web_search_20250305" and "allowed_domains" in t:
+            kept = [d for d in t["allowed_domains"] if d not in blocked_set]
+            nt = dict(t)
+            if kept:
+                nt["allowed_domains"] = kept
+            else:
+                nt.pop("allowed_domains", None)
+            out.append(nt)
+        else:
+            out.append(t)
+    return out
 
 SUBMIT = {
     "name": "submit_digest",
@@ -105,6 +133,9 @@ client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
 
 def fetch_topic(topic, tools):
+    """Return (result_dict, tools). The returned tools may have lost
+    domains that block Anthropic's crawler, so the caller should reuse
+    it for subsequent topics to avoid hitting the same 400 again."""
     for attempt in range(4):
         try:
             response = client.messages.create(
@@ -118,17 +149,23 @@ def fetch_topic(topic, tools):
             )
             for block in response.content:
                 if getattr(block, "type", None) == "tool_use" and block.name == "submit_digest":
-                    return block.input
+                    return block.input, tools
             text = "\n\n".join(
                 b.text for b in response.content
                 if getattr(b, "type", None) == "text" and getattr(b, "text", None)
             ).strip()
-            return {"executive_summary": text, "stories": []}
+            return {"executive_summary": text, "stories": []}, tools
         except RateLimitError:
             wait = 60 * (attempt + 1)
             print(f"Rate limited; sleeping {wait}s before retry...")
             time.sleep(wait)
-    raise RuntimeError(f"Rate limited too many times for topic: {topic}")
+        except BadRequestError as e:
+            blocked = _parse_blocked_domains(str(e))
+            if not blocked:
+                raise
+            print(f"Sites blocking Anthropic web_search: {blocked}; pruning and retrying")
+            tools = _strip_blocked(tools, blocked)
+    raise RuntimeError(f"Failed too many times for topic: {topic}")
 
 
 def main():
@@ -146,7 +183,7 @@ def main():
         if i > 0:
             time.sleep(30)
         print(f"Fetching: {topic}")
-        result = fetch_topic(topic, tools)
+        result, tools = fetch_topic(topic, tools)
         digest["topics"].append({
             "title": topic,
             "executive_summary": result.get("executive_summary", ""),

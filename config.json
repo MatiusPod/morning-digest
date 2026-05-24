@@ -6,13 +6,10 @@
     "AI Infrastructure news"
   ],
   "sources": [
-    "reuters.com",
     "bloomberg.com",
     "techcrunch.com",
-    "theverge.com",
     "axios.com",
-    "x.com",
-    "arstechnica.com"
+    "x.com"
   ],
   "schedule": {
     "hour": 8,
