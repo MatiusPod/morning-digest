@@ -1,34 +1,25 @@
 {
-  "generated_at": "2026-05-24 14:51 UTC",
+  "generated_at": "2026-05-24 15:30 UTC",
   "topics": [
     {
-      "title": "AI announcements & new models",
-      "executive_summary": "I'll search for the latest AI announcements and new models from the past 24 hours.\n\nLet me search for more recent news from the past 24 hours.\n\nBased on my search results, I was unable to find any AI model announcements or major AI news from the last 24 hours (May 23-24, 2026). The most recent stories I found were from several days to weeks ago:\n\n- Google I/O announcements (Gemini 3.5 Flash, Gemini Omni, Gemini Spark) - 4-5 days ago\n- Stability AI's Stable Audio 3.0 release - 3 days ago  \n- Various stories from April and earlier in May\n\nSince I cannot confirm any stories published within the required 24-hour window (since May 23, 2026 14:51 UTC), I cannot produce a briefing that meets the hard requirement that every story must have been published within the last 24 hours.\n\nThe available search results show no qualifying recent announcements from the past day. Rather than submit stories that don't meet the freshness criteria, I need to inform you that there appear to be no major AI model announcements or launches in the specified 24-hour window based on my search results.",
+      "title": "AI Announcements",
+      "executive_summary": "No major AI announcement news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
       "stories": []
     },
     {
-      "title": "Emerging AI startups",
-      "executive_summary": "No major emerging AI startup news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "title": "Startups",
+      "executive_summary": "No major startup funding news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
       "stories": []
     },
     {
-      "title": "AI infrastructure news",
-      "executive_summary": "No significant AI infrastructure news was published in the last 24 hours according to available search results. The most recent stories\u2014including Nvidia's earnings restructure and grid capacity warnings\u2014date from 2-4 days ago.",
+      "title": "AI Infrastructure",
+      "executive_summary": "No major AI infrastructure news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
       "stories": []
     },
     {
       "title": "Deep Tech",
-      "executive_summary": "Nuclear startup Deep Fission is pursuing a Nasdaq IPO seeking up to $1.66 billion valuation despite worsening financials and timeline slippage, raising questions about whether it's capitalizing on sector hype rather than actual progress.",
-      "stories": [
-        {
-          "headline": "Nuclear Startup Deep Fission's Confusing IPO Comeback Raises Eyebrows",
-          "body": "Deep Fission announced it's going public on Nasdaq seeking $157 million at a $1.66 billion valuation\u2014just months after a previous 'public' listing that never actually traded. The company's deficit has grown to $88.1 million and it admits it could run out of money in 12 months without the IPO.",
-          "source_url": "https://techcrunch.com/2026/05/23/nuclear-startup-deep-fission-says-its-going-public-again-and-i-have-questions/",
-          "source_name": "TechCrunch",
-          "published_at": "2026-05-23T00:00:00Z",
-          "icon": "atom"
-        }
-      ]
+      "executive_summary": "No major deep tech news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "stories": []
     }
   ]
 }
