@@ -12,7 +12,7 @@ ICON_ENUM = [
     "atom", "dna", "satellite", "default",
 ]
 
-MODEL = "claude-sonnet-4-5"
+MODEL = "claude-haiku-4-5-20251001"
 
 CONFIG_PATH = "config.json"
 
@@ -26,7 +26,7 @@ def build_web_search(sources):
     tool = {
         "type": "web_search_20250305",
         "name": "web_search",
-        "max_uses": 2,
+        "max_uses": 1,
     }
     if sources:
         tool["allowed_domains"] = sources
@@ -78,7 +78,7 @@ SUBMIT = {
             },
             "stories": {
                 "type": "array",
-                "minItems": 3,
+                "minItems": 0,
                 "maxItems": 5,
                 "items": {
                     "type": "object",
@@ -154,17 +154,25 @@ SUBMIT = {
 SYSTEM = (
     "You are a Morning Brew-style editor producing an executive briefing. "
     "Tone: clear, conversational, lightly witty, no jargon, no filler. "
-    "For each topic, you MUST: (1) use web_search to find the most important "
-    "news published in the LAST 24 HOURS, then (2) call submit_digest exactly "
-    "once with an executive summary and 3-5 distinct stories. "
+    "Workflow per topic: (1) one web_search for the most important news "
+    "from the last 24 hours, (2) call submit_digest exactly once. "
     "HARD RULES: "
-    "(a) Every story MUST have been published within the last 24 hours of "
-    "the current UTC time given below. If you cannot confirm a story is "
-    "that recent, drop it. Prefer fewer stories over stale stories. "
+    "(a) Every story MUST be published within the last 24 hours of the "
+    "current UTC time given. Drop anything stale or unconfirmed — fewer "
+    "stories is fine, zero is fine. "
     "(b) Every source_url MUST be a real URL that appeared in your "
     "web_search results — never invent, guess, or extrapolate URLs. "
-    "(c) For each story set `icon` to the single best-fit pixel-art "
-    "category from the allowed enum."
+    "(c) For each story set `icon` to the single best-fit category. "
+    "(d) If NO story passes the 24h bar, still call submit_digest, with "
+    "stories=[] and executive_summary EXACTLY (substituting a natural "
+    "topic phrase for {TOPIC}): "
+    "\"No major {TOPIC} news was published in the last 24 hours that "
+    "could be confirmed through search results, suggesting a quiet day "
+    "in the sector.\" "
+    "Examples of {TOPIC} substitution: Startups → \"startup\"; "
+    "Deep Tech → \"deep tech\"; AI infrastructure news → "
+    "\"AI infrastructure\"; AI announcements & new models → "
+    "\"AI announcement or new model\"."
 )
 
 USER_TMPL = (
@@ -194,7 +202,7 @@ def fetch_topic(topic, tools):
         try:
             response = client.messages.create(
                 model=MODEL,
-                max_tokens=2048,
+                max_tokens=1024,
                 system=SYSTEM,
                 tools=tools,
                 messages=[{"role": "user", "content": user_msg}],
