@@ -1,15 +1,22 @@
 {
   "topics": [
-    "AI announcements",
-    "New AI models",
+    "AI announcements & new models",
     "Emerging AI startups",
-    "AI Infrastructure news"
+    "AI infrastructure news",
+    "Deep Tech"
   ],
   "sources": [
-    "bloomberg.com",
     "techcrunch.com",
+    "bloomberg.com",
     "axios.com",
-    "x.com"
+    "x.com",
+    "venturebeat.com",
+    "the-decoder.com",
+    "technologyreview.com",
+    "semianalysis.com",
+    "spectrum.ieee.org",
+    "wired.com",
+    "theregister.com"
   ],
   "schedule": {
     "hour": 8,

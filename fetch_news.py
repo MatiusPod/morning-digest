@@ -2,9 +2,15 @@ import json
 import os
 import re
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from anthropic import Anthropic, BadRequestError, RateLimitError
+
+ICON_ENUM = [
+    "chip", "robot", "brain", "rocket", "coin", "server",
+    "flask", "shield", "chat", "bolt", "gear", "eye",
+    "atom", "dna", "satellite", "default",
+]
 
 MODEL = "claude-sonnet-4-5"
 
@@ -99,12 +105,44 @@ SUBMIT = {
                         "source_name": {
                             "type": "string",
                             "description": (
-                                "Publisher name, e.g. 'Reuters', 'TechCrunch', "
-                                "'Bloomberg'."
+                                "Publisher name, e.g. 'TechCrunch', "
+                                "'Bloomberg', 'The Decoder'."
+                            ),
+                        },
+                        "published_at": {
+                            "type": "string",
+                            "description": (
+                                "Publication date/time of the source article "
+                                "in ISO 8601 if known (e.g. "
+                                "'2026-05-23T14:30:00Z'). MUST be within the "
+                                "last 24 hours of the current UTC time."
+                            ),
+                        },
+                        "icon": {
+                            "type": "string",
+                            "enum": ICON_ENUM,
+                            "description": (
+                                "Pixel-art icon category that best represents "
+                                "the story. Pick the single best fit: "
+                                "chip (silicon/hardware), robot (robotics/"
+                                "agents), brain (research/cognition), rocket "
+                                "(launch/announcement), coin (funding/M&A), "
+                                "server (infra/datacenter/cloud), flask "
+                                "(science/lab), shield (safety/security/"
+                                "regulation), chat (chatbot/LLM/assistant), "
+                                "bolt (speed/breakthrough/benchmark), gear "
+                                "(engineering/tooling), eye (vision/perception/"
+                                "multimodal), atom (deep tech/quantum/"
+                                "materials), dna (biotech/health), satellite "
+                                "(space/communications), default (only if "
+                                "nothing else fits)."
                             ),
                         },
                     },
-                    "required": ["headline", "body", "source_url", "source_name"],
+                    "required": [
+                        "headline", "body", "source_url",
+                        "source_name", "icon",
+                    ],
                 },
             },
         },
@@ -117,15 +155,24 @@ SYSTEM = (
     "You are a Morning Brew-style editor producing an executive briefing. "
     "Tone: clear, conversational, lightly witty, no jargon, no filler. "
     "For each topic, you MUST: (1) use web_search to find the most important "
-    "news of the last 24-48 hours, then (2) call submit_digest exactly once "
-    "with an executive summary and 3-5 distinct stories. "
-    "Every source_url must be a real URL that appeared in your web_search "
-    "results - never invent or guess URLs."
+    "news published in the LAST 24 HOURS, then (2) call submit_digest exactly "
+    "once with an executive summary and 3-5 distinct stories. "
+    "HARD RULES: "
+    "(a) Every story MUST have been published within the last 24 hours of "
+    "the current UTC time given below. If you cannot confirm a story is "
+    "that recent, drop it. Prefer fewer stories over stale stories. "
+    "(b) Every source_url MUST be a real URL that appeared in your "
+    "web_search results — never invent, guess, or extrapolate URLs. "
+    "(c) For each story set `icon` to the single best-fit pixel-art "
+    "category from the allowed enum."
 )
 
 USER_TMPL = (
-    "Topic: {topic}\n\n"
-    "Search the web for what mattered in this topic over the last 24-48 hours, "
+    "Topic: {topic}\n"
+    "Current UTC time: {now_utc}\n"
+    "Window: include ONLY stories published since {since_utc} "
+    "(strictly the last 24 hours).\n\n"
+    "Search the web for what mattered in this topic in that 24-hour window, "
     "then call submit_digest with the structured briefing."
 )
 
@@ -136,6 +183,13 @@ def fetch_topic(topic, tools):
     """Return (result_dict, tools). The returned tools may have lost
     domains that block Anthropic's crawler, so the caller should reuse
     it for subsequent topics to avoid hitting the same 400 again."""
+    now = datetime.now(timezone.utc)
+    since = now - timedelta(hours=24)
+    user_msg = USER_TMPL.format(
+        topic=topic,
+        now_utc=now.strftime("%Y-%m-%d %H:%M UTC"),
+        since_utc=since.strftime("%Y-%m-%d %H:%M UTC"),
+    )
     for attempt in range(4):
         try:
             response = client.messages.create(
@@ -143,9 +197,7 @@ def fetch_topic(topic, tools):
                 max_tokens=2048,
                 system=SYSTEM,
                 tools=tools,
-                messages=[
-                    {"role": "user", "content": USER_TMPL.format(topic=topic)}
-                ],
+                messages=[{"role": "user", "content": user_msg}],
             )
             for block in response.content:
                 if getattr(block, "type", None) == "tool_use" and block.name == "submit_digest":

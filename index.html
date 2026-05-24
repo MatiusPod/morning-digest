@@ -510,8 +510,47 @@
     .story {
       padding-top: 20px;
       border-top: 1px solid rgba(10, 20, 16, 0.18);
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      column-gap: 18px;
+      align-items: start;
     }
     .story:first-child { border-top: 0; padding-top: 4px; }
+    .story-icon {
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(160deg,
+          var(--accent) 0%,
+          rgba(10, 20, 16, 0.55) 100%);
+      border: 1px solid rgba(10, 20, 16, 0.55);
+      border-radius: 3px;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -3px 0 rgba(0, 0, 0, 0.28),
+        0 3px 0 -1px rgba(0, 0, 0, 0.35);
+    }
+    .story-icon svg {
+      width: 44px;
+      height: 44px;
+      color: #fffbe6;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      shape-rendering: crispEdges;
+      filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.55));
+    }
+    .story-text { min-width: 0; }
+    .story-date {
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(42, 58, 48, 0.72);
+      margin-bottom: 6px;
+    }
     .story h3 {
       font-family: "Cinzel", serif;
       font-weight: 700;
@@ -526,6 +565,11 @@
       line-height: 1.65;
       color: #2a3a30;
       margin-bottom: 12px;
+    }
+    @media (max-width: 540px) {
+      .story { grid-template-columns: 48px 1fr; column-gap: 14px; }
+      .story-icon { width: 48px; height: 48px; }
+      .story-icon svg { width: 34px; height: 34px; }
     }
     .src {
       display: inline-flex; align-items: center; gap: 8px;
@@ -1166,14 +1210,181 @@
       return el;
     }
 
+    /* Pixel-art icons. 12x12 grid, single color via currentColor.
+       Each story carries an `icon` key chosen by the model. */
+    const _SVG_OPEN = '<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" fill="currentColor" shape-rendering="crispEdges">';
+    const _r = (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`;
+    const _ico = (...rects) => _SVG_OPEN + rects.join("") + "</svg>";
+
+    const PIXEL_ICONS = {
+      chip: _ico(
+        _r(2, 2, 8, 1), _r(2, 9, 8, 1),
+        _r(2, 3, 1, 6), _r(9, 3, 1, 6),
+        _r(4, 4, 4, 4),
+        _r(0, 3, 2, 1), _r(0, 5, 2, 1), _r(0, 7, 2, 1),
+        _r(10, 3, 2, 1), _r(10, 5, 2, 1), _r(10, 7, 2, 1),
+        _r(3, 0, 1, 2), _r(5, 0, 1, 2), _r(7, 0, 1, 2),
+        _r(3, 10, 1, 2), _r(5, 10, 1, 2), _r(7, 10, 1, 2)
+      ),
+      robot: _ico(
+        _r(5, 0, 2, 1),
+        _r(5, 1, 2, 1),
+        _r(2, 2, 8, 2),
+        _r(2, 4, 2, 1), _r(5, 4, 2, 1), _r(8, 4, 2, 1),
+        _r(2, 5, 8, 2),
+        _r(5, 7, 2, 1),
+        _r(1, 8, 10, 3),
+        _r(3, 11, 2, 1), _r(7, 11, 2, 1)
+      ),
+      brain: _ico(
+        _r(4, 1, 4, 1),
+        _r(3, 2, 6, 1),
+        _r(2, 3, 8, 5),
+        _r(3, 8, 6, 1),
+        _r(4, 9, 4, 1),
+        _r(5, 10, 2, 1)
+      ),
+      rocket: _ico(
+        _r(5, 0, 2, 2),
+        _r(4, 2, 4, 5),
+        _r(3, 4, 1, 3), _r(8, 4, 1, 3),
+        _r(2, 6, 2, 2), _r(8, 6, 2, 2),
+        _r(4, 7, 4, 2),
+        _r(5, 9, 2, 2),
+        _r(4, 11, 1, 1), _r(7, 11, 1, 1)
+      ),
+      coin: _ico(
+        _r(3, 0, 6, 1), _r(2, 1, 8, 1), _r(3, 2, 6, 1),
+        _r(3, 4, 6, 1), _r(2, 5, 8, 1), _r(3, 6, 6, 1),
+        _r(3, 8, 6, 1), _r(2, 9, 8, 1), _r(3, 10, 6, 1)
+      ),
+      server: _ico(
+        _r(2, 1, 8, 1), _r(2, 10, 8, 1),
+        _r(2, 1, 1, 10), _r(9, 1, 1, 10),
+        _r(3, 3, 6, 1), _r(3, 5, 6, 1), _r(3, 7, 6, 1),
+        _r(2, 11, 2, 1), _r(8, 11, 2, 1)
+      ),
+      flask: _ico(
+        _r(4, 0, 4, 1),
+        _r(5, 1, 2, 3),
+        _r(4, 4, 4, 1),
+        _r(3, 5, 6, 1),
+        _r(2, 6, 8, 1),
+        _r(1, 7, 10, 4),
+        _r(2, 11, 8, 1)
+      ),
+      shield: _ico(
+        _r(3, 0, 6, 1),
+        _r(2, 1, 8, 6),
+        _r(3, 7, 6, 1),
+        _r(4, 8, 4, 1),
+        _r(4, 9, 4, 1),
+        _r(5, 10, 2, 2)
+      ),
+      chat: _ico(
+        _r(1, 1, 10, 7),
+        _r(2, 8, 4, 2),
+        _r(3, 10, 1, 1)
+      ),
+      bolt: _ico(
+        _r(6, 0, 3, 3),
+        _r(4, 2, 4, 2),
+        _r(2, 4, 5, 2),
+        _r(4, 5, 4, 2),
+        _r(2, 7, 4, 2),
+        _r(3, 9, 3, 2),
+        _r(4, 11, 2, 1)
+      ),
+      gear: _ico(
+        _r(4, 0, 4, 2),
+        _r(0, 4, 2, 4),
+        _r(10, 4, 2, 4),
+        _r(4, 10, 4, 2),
+        _r(2, 2, 8, 8),
+        _r(5, 5, 2, 2)
+      ),
+      eye: _ico(
+        _r(2, 4, 8, 1),
+        _r(1, 5, 1, 2), _r(10, 5, 1, 2),
+        _r(5, 5, 2, 2),
+        _r(2, 7, 8, 1)
+      ),
+      atom: _ico(
+        _r(5, 5, 2, 2),
+        _r(5, 1, 2, 1), _r(5, 10, 2, 1),
+        _r(1, 5, 1, 2), _r(10, 5, 1, 2),
+        _r(2, 2, 2, 1), _r(8, 2, 2, 1),
+        _r(2, 9, 2, 1), _r(8, 9, 2, 1),
+        _r(3, 3, 1, 1), _r(8, 3, 1, 1),
+        _r(3, 8, 1, 1), _r(8, 8, 1, 1)
+      ),
+      dna: _ico(
+        _r(2, 0, 2, 2), _r(8, 0, 2, 2),
+        _r(3, 2, 6, 1),
+        _r(3, 3, 2, 1), _r(7, 3, 2, 1),
+        _r(4, 4, 1, 1), _r(7, 4, 1, 1),
+        _r(5, 5, 2, 2),
+        _r(4, 7, 1, 1), _r(7, 7, 1, 1),
+        _r(3, 8, 2, 1), _r(7, 8, 2, 1),
+        _r(3, 9, 6, 1),
+        _r(2, 10, 2, 2), _r(8, 10, 2, 2)
+      ),
+      satellite: _ico(
+        _r(4, 4, 4, 4),
+        _r(5, 1, 2, 3),
+        _r(0, 5, 4, 2),
+        _r(8, 5, 4, 2),
+        _r(6, 8, 2, 2),
+        _r(5, 10, 4, 1),
+        _r(4, 11, 5, 1)
+      ),
+      default: _ico(
+        _r(5, 0, 2, 12),
+        _r(0, 5, 12, 2),
+        _r(2, 2, 2, 2), _r(8, 2, 2, 2),
+        _r(2, 8, 2, 2), _r(8, 8, 2, 2)
+      ),
+    };
+
+    function pixelIconFor(key) {
+      return PIXEL_ICONS[key] || PIXEL_ICONS.default;
+    }
+
+    function formatStoryDate(raw) {
+      if (!raw) return "";
+      const d = new Date(raw);
+      if (isNaN(d.getTime())) return String(raw);
+      return d.toLocaleString(undefined, {
+        month: "short", day: "numeric",
+        hour: "2-digit", minute: "2-digit",
+      });
+    }
+
     function renderStory(s) {
       const li = document.createElement("li");
       li.className = "story";
+
+      const iconWrap = document.createElement("div");
+      iconWrap.className = "story-icon";
+      iconWrap.innerHTML = pixelIconFor(s.icon);
+
+      const text = document.createElement("div");
+      text.className = "story-text";
+
+      const dateStr = formatStoryDate(s.published_at);
+      if (dateStr) {
+        const meta = document.createElement("div");
+        meta.className = "story-date";
+        meta.textContent = dateStr;
+        text.append(meta);
+      }
+
       const h = document.createElement("h3");
       h.textContent = s.headline || "";
       const p = document.createElement("p");
       p.textContent = s.body || "";
-      li.append(h, p);
+      text.append(h, p);
+
       if (s.source_url) {
         const a = document.createElement("a");
         a.className = "src";
@@ -1185,8 +1396,10 @@
         arrow.className = "arrow";
         arrow.textContent = "→";
         a.append(document.createTextNode(`Read at ${name} `), arrow);
-        li.append(a);
+        text.append(a);
       }
+
+      li.append(iconWrap, text);
       return li;
     }
 
