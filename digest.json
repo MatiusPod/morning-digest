@@ -1,27 +1,129 @@
 {
-  "generated_at": "2026-05-06 22:02 UTC",
+  "generated_at": "2026-05-24 14:24 UTC",
   "topics": [
     {
-      "title": "Climate Science Breakthroughs",
-      "executive_summary": "A breakthrough AI system is revealing never-before-seen ocean currents critical to climate forecasting, while a stark new study warns New Orleans must begin planning immediate relocation as rising seas threaten to surround the city by century's end.",
+      "title": "AI announcements",
+      "executive_summary": "DeepSeek made permanent a 75% price cut on its flagship AI model, intensifying competition in the industry, while Google unveiled sweeping product changes at I/O including new AI agents, its Gemini Omni multimodal model, and a complete search bar redesign.",
       "stories": [
         {
-          "headline": "AI Unveils Hidden Ocean Currents Critical to Climate Science",
-          "body": "Scientists developed GOFLOW, an AI tool that turns weather satellite images into detailed maps of fast-moving ocean currents previously impossible to observe. The breakthrough uses existing satellites to reveal small-scale currents key to understanding heat transport, carbon storage, and marine ecosystems without requiring new hardware.",
-          "source_url": "https://www.uri.edu/news/2026/04/new-satellite-based-ai-approach-reveals-ocean-currents-in-unprecedented-detail/",
-          "source_name": "University of Rhode Island"
+          "headline": "DeepSeek Makes Permanent 75% Price Cut on Flagship AI Model",
+          "body": "The Chinese AI startup announced it will permanently maintain a steep discount on its V4-Pro model at a quarter of the original price, a move set to intensify competition across the AI industry as Chinese firms compete more directly with global peers.",
+          "source_url": "https://www.bloomberg.com/news/articles/2026-05-23/deepseek-to-make-permanent-75-discount-on-flagship-ai-model",
+          "source_name": "Bloomberg"
         },
         {
-          "headline": "New Orleans Told to Start Relocation Planning Now",
-          "body": "A Nature study published this week concludes New Orleans has reached a climate 'point of no return' and must begin planning to relocate residents as sea-level rise combined with sinking land will likely surround the city with Gulf waters by the end of this century. Researchers say the transition requires generations of planning and should start immediately.",
-          "source_url": "https://www.npr.org/2026/05/06/nx-s1-5810941/new-orleans-ocean-study",
-          "source_name": "NPR"
+          "headline": "Google Unveils AI Agents, Gemini Omni, and Major Search Overhaul at I/O",
+          "body": "Google announced Gemini Omni, a multimodal model for generating video from text, images, audio and video, alongside new AI agents including information agents and Gemini Spark. The company also redesigned its search box for the first time in 25 years to auto-expand for longer queries with AI-powered suggestions.",
+          "source_url": "https://www.axios.com/2026/05/19/google-ai-youtube-gemini",
+          "source_name": "Axios"
         },
         {
-          "headline": "Airborne Microplastics Now Warming the Atmosphere",
-          "body": "Colored microplastics floating in the atmosphere are trapping heat at about 16% the warming power of black carbon soot, according to research published Monday in Nature Climate Change. Scientists found darker plastic particles absorb sunlight as they drift globally, creating a previously unrecognized contributor to climate change.",
-          "source_url": "https://www.washingtonpost.com/climate-environment/2026/05/04/microplastics-global-warming-climate/",
-          "source_name": "The Washington Post"
+          "headline": "Hark Raises $700M Series A at $6B Valuation for Secretive AI Assistant",
+          "body": "AI lab Hark raised a mega-round led by Parkway Venture Capital with backing from Nvidia, Intel, Qualcomm, Salesforce and others to build an agentic AI system as a universal interface with the digital world, despite revealing few details about its product.",
+          "source_url": "https://techcrunch.com/2026/05/21/hark-raises-700m-series-a-for-its-secretive-universal-ai-interface/",
+          "source_name": "TechCrunch"
+        },
+        {
+          "headline": "Trump Delays AI Security Executive Order After Pushback",
+          "body": "President Trump postponed signing an executive order that would have required government evaluation of AI models before release, citing concerns about language that could hinder U.S. leadership. The signing was scrapped hours before a planned photo op after tech executives and advisers objected.",
+          "source_url": "https://www.axios.com/2026/05/21/trump-ai-executive-order-postponed-why",
+          "source_name": "Axios"
+        }
+      ]
+    },
+    {
+      "title": "New AI models",
+      "executive_summary": "DeepSeek made permanent its 75% discount on its flagship V4-Pro AI model, slashing prices to just a quarter of original rates and intensifying the price war in AI. Meanwhile, Google launched Gemini 3.5 Flash this week at I/O, positioning it as its strongest model yet for coding and autonomous agents, while Stability AI released audio models capable of generating six-minute songs.",
+      "stories": [
+        {
+          "headline": "DeepSeek Makes 75% Price Cut Permanent on Flagship Model",
+          "body": "The Chinese AI lab announced it will permanently maintain a steep 75% discount on its V4-Pro model that was set to expire in May. The move intensifies competition as Chinese firms undercut global rivals on pricing while matching performance benchmarks.",
+          "source_url": "https://www.bloomberg.com/news/articles/2026-05-23/deepseek-to-make-permanent-75-discount-on-flagship-ai-model",
+          "source_name": "Bloomberg"
+        },
+        {
+          "headline": "Google's Gemini 3.5 Flash Targets Autonomous Agent Market",
+          "body": "Google launched Gemini 3.5 Flash at I/O on Tuesday, calling it its strongest model for coding and AI agents. The model can independently execute coding pipelines and in tests built an entire operating system from scratch, signaling Google's shift from chatbots to agentic AI.",
+          "source_url": "https://techcrunch.com/2026/05/19/with-gemini-3-5-flash-google-bets-its-next-ai-wave-on-agents-not-chatbots/",
+          "source_name": "TechCrunch"
+        },
+        {
+          "headline": "Stability AI Ships Audio Models That Generate Six-Minute Songs",
+          "body": "Stability AI released its Stable Audio 3.0 family of models capable of generating professional-grade music over six minutes long\u2014double the length of previous versions. The company emphasized all models are built on fully licensed data amid ongoing industry copyright battles.",
+          "source_url": "https://techcrunch.com/2026/05/20/stability-ai-release-a-new-audio-model-that-can-create-six-minute-songs/",
+          "source_name": "TechCrunch"
+        },
+        {
+          "headline": "Google Introduces Always-On AI Agents for Consumers at I/O",
+          "body": "Google unveiled information agents and Gemini Spark at its developer conference, designed to run 24/7 monitoring tasks like price tracking and weather alerts. The company is positioning agents as the next evolution beyond chatbots, though consumer adoption remains uncertain.",
+          "source_url": "https://techcrunch.com/2026/05/21/google-is-pitching-an-ai-agent-ecosystem-to-consumers-who-may-not-buy-it/",
+          "source_name": "TechCrunch"
+        }
+      ]
+    },
+    {
+      "title": "Emerging AI startups",
+      "executive_summary": "Anthropic is set to close a massive $30+ billion funding round at a valuation above $900 billion as soon as next week, leapfrogging OpenAI to become the world's most valuable AI startup, while AI search startup Exa Labs just raised $250 million at a $2.2 billion valuation in a hot new sector.",
+      "stories": [
+        {
+          "headline": "Anthropic poised to become world's most valuable AI startup with $30B+ round",
+          "body": "The Claude maker is set to close a funding round topping $30 billion at a valuation above $900 billion as soon as next week. Sequoia, Dragoneer, Altimeter and Greenoaks will each invest roughly $2 billion, with Peter Thiel's Founders Fund and General Catalyst also participating.",
+          "source_url": "https://www.bloomberg.com/news/articles/2026-05-22/anthropic-to-close-over-30-billion-round-as-soon-as-next-week",
+          "source_name": "Bloomberg"
+        },
+        {
+          "headline": "AI search startups are suddenly red-hot as Exa Labs bags $250M",
+          "body": "Andreessen Horowitz-backed Exa Labs raised $250 million at a $2.2 billion valuation to chase the AI search market. The wave includes ex-Twitter CEO Parag Agrawal's Parallel Web, which raised $100 million at a $2 billion valuation from Sequoia, positioning these startups to carve out niches while Google and ChatGPT battle.",
+          "source_url": "https://techcrunch.com/2026/05/20/ai-search-startups-are-blowing-up/",
+          "source_name": "TechCrunch"
+        },
+        {
+          "headline": "Brett Adcock's AI hardware startup Hark hits $6B valuation in Series A",
+          "body": "Entrepreneur Brett Adcock secured over $700 million for Hark, an AI-focused hardware company, at a $6 billion valuation. The Series A was led by Parkway Venture Capital with participation from Nvidia, AMD Ventures, Intel Capital, Qualcomm Ventures and Salesforce Ventures.",
+          "source_url": "https://www.bloomberg.com/news/articles/2026-05-21/ai-hardware-startup-hark-valued-at-6-billion-in-new-funding-round",
+          "source_name": "Bloomberg"
+        },
+        {
+          "headline": "Richard Socher's self-improving AI startup launches with $650M war chest",
+          "body": "Recursive Superintelligence emerged from stealth with $650 million to build an AI that can autonomously identify its weaknesses and redesign itself without human involvement. Founded by the You.com creator alongside Peter Norvig and other AI researchers, the startup promises products in quarters, not years.",
+          "source_url": "https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/",
+          "source_name": "TechCrunch"
+        },
+        {
+          "headline": "AI voice platform Vapi hits $500M valuation after winning Amazon Ring",
+          "body": "Vapi raised $50 million in a Series B led by Peak XV at a $500 million valuation after Amazon Ring chose it over 40 rivals to handle 100% of its inbound customer calls. The startup has processed over 1 billion calls and now handles between 1 million and 5 million calls daily.",
+          "source_url": "https://techcrunch.com/2026/05/12/vapi-hits-500m-valuation-as-amazon-ring-chose-its-ai-platform-over-40-rivals/",
+          "source_name": "TechCrunch"
+        }
+      ]
+    },
+    {
+      "title": "AI Infrastructure news",
+      "executive_summary": "Anthropic struck a $1.25 billion monthly deal to lease Elon Musk's massive Memphis data center, while industry leaders warn that chip supply constraints will persist for years despite a manufacturing acceleration that still can't meet hyperscaler demand.",
+      "stories": [
+        {
+          "headline": "Anthropic Pays $1.25 Billion Monthly for Musk's Memphis Data Center",
+          "body": "Anthropic is now leasing Elon Musk's Colossus 1 data center in Memphis\u2014a sprawling facility spanning 13 football fields and consuming 300 megawatts\u2014for $1.25 billion per month to power its Claude chatbot. The deal signals AI companies' desperation for compute capacity.",
+          "source_url": "https://www.bloomberg.com/opinion/articles/2026-05-22/the-fate-of-ai-depends-on-physical-infrastructure-not-just-algorithms",
+          "source_name": "Bloomberg"
+        },
+        {
+          "headline": "ASML CEO Warns Chip Supply Will Stay Constrained Through 2031",
+          "body": "Despite a massive acceleration in chip manufacturing, ASML CEO Christophe Fouquet predicts the AI infrastructure market will remain supply-limited for the next three to five years, meaning hyperscalers won't get all the chips they've already paid for.",
+          "source_url": "https://techcrunch.com/2026/05/06/five-architects-of-the-ai-economy-explain-where-the-wheels-are-coming-off",
+          "source_name": "TechCrunch"
+        },
+        {
+          "headline": "Google Cloud Backlog Nearly Doubles to $460 Billion in One Quarter",
+          "body": "Google Cloud's committed-but-not-yet-delivered revenue jumped from $250 billion to $460 billion in a single quarter, with the division crossing $20 billion in quarterly revenue and growing 63% as AI infrastructure demand far outpaces supply.",
+          "source_url": "https://techcrunch.com/2026/05/06/five-architects-of-the-ai-economy-explain-where-the-wheels-are-coming-off",
+          "source_name": "TechCrunch"
+        },
+        {
+          "headline": "Physical Infrastructure Emerges as AI's Real Bottleneck, Not Algorithms",
+          "body": "AI companies are hitting hard physical limits as the industry confronts the reality that concrete and power grids\u2014not software\u2014will determine the pace of progress. The desperation for compute capacity suggests infrastructure constraints will shape the sector's trajectory.",
+          "source_url": "https://www.bloomberg.com/opinion/articles/2026-05-22/the-fate-of-ai-depends-on-physical-infrastructure-not-just-algorithms",
+          "source_name": "Bloomberg"
         }
       ]
     }
