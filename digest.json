@@ -1,10 +1,35 @@
 {
-  "generated_at": "2026-05-25 12:13 UTC",
+  "generated_at": "2026-05-26 19:34 UTC",
   "topics": [
     {
       "title": "AI Announcements",
-      "executive_summary": "No major AI announcement news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "Google I/O 2026 delivered its biggest announcements in years: Gemini 3.5 Flash is now generally available as a faster frontier model, and AI Mode has topped 1 billion monthly users with a redesigned search experience rolling out globally.",
+      "stories": [
+        {
+          "headline": "Google launches Gemini 3.5 Flash and Managed Agents",
+          "body": "Google unveiled Gemini 3.5 Flash, combining frontier intelligence with action capabilities, now available via the Gemini API and Google AI Studio. The new model powers Managed Agents in the Gemini API, which provision sandboxed Linux environments where agents can reason, execute code, and browse the web with a single API call.",
+          "source_url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
+          "source_name": "Google Blog",
+          "published_at": "2026-05-26T14:34:00Z",
+          "pixel_art": "............\n............\n....####....\n...#....#...\n..#.####.#..\n..#.####.#..\n..#......#..\n...#....#...\n....####....\n............\n............\n............"
+        },
+        {
+          "headline": "Google Search gets AI overhaul with Gemini 3.5 Flash",
+          "body": "Google redesigned its search experience with a new AI-powered search box supporting multimodal inputs (text, images, files, videos, Chrome tabs). AI Mode, now default globally, has surpassed 1 billion monthly users with queries more than doubling every quarter.",
+          "source_url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
+          "source_name": "Google Blog",
+          "published_at": "2026-05-26T14:34:00Z",
+          "pixel_art": "............\n............\n.....##.....\n...#.##.#...\n..#.####.#..\n..#.####.#..\n...#.##.#...\n.....##.....\n............\n............\n............\n............"
+        },
+        {
+          "headline": "Google announces $2M Build with Gemini hackathon",
+          "body": "Google unveiled the Build with Gemini XPRIZE Hackathon with a $2 million prize pool, described as the largest ever for a hackathon, encouraging developers to build with Gemini and Antigravity.",
+          "source_url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
+          "source_name": "Google Blog",
+          "published_at": "2026-05-26T14:34:00Z",
+          "pixel_art": "............\n........#...\n.......##...\n.....####...\n...#.####...\n.#..####....\n.##.####....\n.###.......\n............\n............\n............\n............"
+        }
+      ]
     },
     {
       "title": "Startups",
