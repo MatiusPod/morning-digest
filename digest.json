@@ -1,35 +1,10 @@
 {
-  "generated_at": "2026-05-26 19:34 UTC",
+  "generated_at": "2026-05-27 12:37 UTC",
   "topics": [
     {
       "title": "AI Announcements",
-      "executive_summary": "Google I/O 2026 delivered its biggest announcements in years: Gemini 3.5 Flash is now generally available as a faster frontier model, and AI Mode has topped 1 billion monthly users with a redesigned search experience rolling out globally.",
-      "stories": [
-        {
-          "headline": "Google launches Gemini 3.5 Flash and Managed Agents",
-          "body": "Google unveiled Gemini 3.5 Flash, combining frontier intelligence with action capabilities, now available via the Gemini API and Google AI Studio. The new model powers Managed Agents in the Gemini API, which provision sandboxed Linux environments where agents can reason, execute code, and browse the web with a single API call.",
-          "source_url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
-          "source_name": "Google Blog",
-          "published_at": "2026-05-26T14:34:00Z",
-          "pixel_art": "............\n............\n....####....\n...#....#...\n..#.####.#..\n..#.####.#..\n..#......#..\n...#....#...\n....####....\n............\n............\n............"
-        },
-        {
-          "headline": "Google Search gets AI overhaul with Gemini 3.5 Flash",
-          "body": "Google redesigned its search experience with a new AI-powered search box supporting multimodal inputs (text, images, files, videos, Chrome tabs). AI Mode, now default globally, has surpassed 1 billion monthly users with queries more than doubling every quarter.",
-          "source_url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
-          "source_name": "Google Blog",
-          "published_at": "2026-05-26T14:34:00Z",
-          "pixel_art": "............\n............\n.....##.....\n...#.##.#...\n..#.####.#..\n..#.####.#..\n...#.##.#...\n.....##.....\n............\n............\n............\n............"
-        },
-        {
-          "headline": "Google announces $2M Build with Gemini hackathon",
-          "body": "Google unveiled the Build with Gemini XPRIZE Hackathon with a $2 million prize pool, described as the largest ever for a hackathon, encouraging developers to build with Gemini and Antigravity.",
-          "source_url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
-          "source_name": "Google Blog",
-          "published_at": "2026-05-26T14:34:00Z",
-          "pixel_art": "............\n........#...\n.......##...\n.....####...\n...#.####...\n.#..####....\n.##.####....\n.###.......\n............\n............\n............\n............"
-        }
-      ]
+      "executive_summary": "No major AI announcement news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "stories": []
     },
     {
       "title": "Startups",
@@ -43,8 +18,49 @@
     },
     {
       "title": "Deep Tech",
-      "executive_summary": "No major deep tech news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "Recent breakthroughs span quantum sensing, physics-native computing, and brain restoration: CERN detected hints of physics beyond the Standard Model, UC Davis shrunk lab-quality spectrometry to a grain-of-sand chip, and Texas A&M's nasal spray reversed cognitive aging in early tests.",
+      "stories": [
+        {
+          "headline": "CERN detects strongest hints yet of physics beyond Standard Model",
+          "body": "<cite index=\"7-8\">Scientists working at CERN's Large Hadron Collider may be seeing the strongest hints yet of physics beyond the Standard Model\u2014the decades-old theory that explains the fundamental particles.</cite>",
+          "source_name": "ScienceDaily",
+          "source_url": "https://www.sciencedaily.com/news/top/science/",
+          "published_at": "2026-05-26T00:00:00Z",
+          "pixel_art": "............\n............\n....####....\n...#....#...\n..#..##..#..\n..#..##..#..\n..#......#..\n...#....#...\n....####....\n............\n............\n............"
+        },
+        {
+          "headline": "UC Davis shrinks lab spectrometer to grain-of-sand AI chip",
+          "body": "<cite index=\"7-8\">An AI-powered chip from UC Davis can analyze light and chemicals using a device tiny enough to fit almost anywhere, combining smart silicon sensors with machine learning.</cite>",
+          "source_name": "ScienceDaily",
+          "source_url": "https://www.sciencedaily.com/news/top/science/",
+          "published_at": "2026-05-26T00:00:00Z",
+          "pixel_art": "............\n............\n.....###....\n....#####...\n....##.##...\n....##.##...\n....#####...\n.....###....\n............\n............\n............\n............"
+        },
+        {
+          "headline": "Nasal spray reverses brain aging by restoring cellular energy",
+          "body": "<cite index=\"7-7\">Researchers at Texas A&M developed a nasal spray that appears to reverse brain aging by calming inflammation and restoring the brain's energy systems, with memory and cognitive function improved for months after just two doses.</cite>",
+          "source_name": "ScienceDaily",
+          "source_url": "https://www.sciencedaily.com/news/top/science/",
+          "published_at": "2026-05-26T00:00:00Z",
+          "pixel_art": "............\n....#.......\n...###......\n..#####.....\n..##.##.....\n..#####.....\n...###......\n....#.......\n............\n............\n............\n............"
+        },
+        {
+          "headline": "Quantum sensor detects energy below one zeptojoule",
+          "body": "<cite index=\"5-2,5-3\">Researchers built an ultra-sensitive sensor capable of detecting unimaginably small amounts of energy below one zeptojoule, relying on fragile superconducting materials that react to even the slightest temperature change.</cite>",
+          "source_name": "ScienceDaily",
+          "source_url": "https://www.sciencedaily.com/",
+          "published_at": "2026-05-20T00:00:00Z",
+          "pixel_art": "............\n............\n.....##.....\n....####....\n...##..##...\n...##..##...\n....####....\n.....##.....\n............\n............\n............\n............"
+        },
+        {
+          "headline": "Penn creates hybrid light-matter particle for ultra-efficient AI",
+          "body": "<cite index=\"5-10\">Researchers at Penn created a hybrid light-matter particle that could dramatically speed up AI computing while using far less energy, potentially replacing electronic computing with light-based processes.</cite>",
+          "source_name": "ScienceDaily",
+          "source_url": "https://www.sciencedaily.com/",
+          "published_at": "2026-05-18T00:00:00Z",
+          "pixel_art": "............\n............\n....#.......\n....##......\n...#.##.....\n..#...##....\n..#....#....\n...####.....\n............\n............\n............\n............"
+        }
+      ]
     }
   ]
 }
