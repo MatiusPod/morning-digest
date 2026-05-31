@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30 07:59 UTC",
+  "generated_at": "2026-05-31 08:25 UTC",
   "topics": [
     {
       "title": "AI Announcements",
@@ -18,8 +18,17 @@
     },
     {
       "title": "Deep Tech",
-      "executive_summary": "No major deep tech news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "Researchers developed a room-temperature quantum device using twisted light to entangle photons and electrons, overcoming a major hurdle in practical quantum technology implementation.",
+      "stories": [
+        {
+          "headline": "Twisted Light Entangles Photons and Electrons at Room Temperature",
+          "body": "A breakthrough quantum device operates at room temperature using twisted light to entangle photons and electrons, solving one of quantum technology's biggest practical challenges. The discovery could accelerate real-world quantum applications.",
+          "source_name": "ScienceDaily",
+          "source_url": "https://www.sciencedaily.com/news/matter_energy/quantum_physics/",
+          "published_at": "2026-05-30T00:00:00Z",
+          "pixel_art": "............\n............\n....####....\n...#....#...\n..#.####.#..\n.#..####..#.\n.#........#.\n.#..####..#.\n...#....#...\n....####....\n............\n............"
+        }
+      ]
     }
   ]
 }
