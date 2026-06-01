@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-31 08:25 UTC",
+  "generated_at": "2026-06-01 19:24 UTC",
   "topics": [
     {
       "title": "AI Announcements",
@@ -13,22 +13,13 @@
     },
     {
       "title": "AI Infrastructure",
-      "executive_summary": "No major AI infrastructure news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "<cite index=\"3-3\">AI firms are investing heavily in energy-efficiency infrastructure to manage soaring datacenter power demands</cite>, while <cite index=\"4-7\">Iris Energy (IREN) announced it's using digital twins to validate deployment of 50,000+ NVIDIA Blackwell Ultra GPUs</cite>.",
+      "stories": "[\n  {\n    \"headline\": \"AI Data Centers Face 20% Power Efficiency Gains via New Sidecars\",\n    \"body\": \"<cite index=\"3-11,3-13\">NVIDIA is deploying new power conversion sidecars that consolidate AC-to-DC conversion outside racks, improving energy efficiency by 20% compared to current systems</cite>. <cite index=\"3-13,3-14\">With a 1 megawatt sidecar, racks can reach 500 kilowatts, roughly ten times more than before</cite>.\",\n    \"source_url\": \"https://www.bloomberg.com/graphics/2026-ai-data-center-redesign/\",\n    \"source_name\": \"Bloomberg\",\n    \"published_at\": \"2026-06-01T09:25:00Z\",\n    \"pixel_art\": \"............\\n............\\n....####....\\n...#....#...\\n..#.####.#..\\n..#.####.#..\\n..#......#..\\n...#....#...\\n....####....\\n............\\n............\\n............\"\n  },\n  {\n    \"headline\": \"IREN Tests 50,000+ Blackwell GPUs Using AI-Powered Digital Twins\",\n    \"body\": \"<cite index=\"4-7\">Iris Energy announced a digital twin of its AI cloud using DSX Air simulation, allowing teams to trial network designs for 50,000+ NVIDIA Blackwell Ultra GPUs and reduce integration risk before physical deployment</cite>.\",\n    \"source_url\": \"https://www.stocktitan.net/news/IREN/iren-and-be-networks-accelerate-deployment-of-large-scale-ai-factory-efy1vbgtr04w.html\",\n    \"source_name\": \"StockTitan/PRNewswire\",\n    \"published_at\": \"2026-06-01T14:25:00Z\",\n    \"pixel_art\": \"............\\n............\\n.....##.....\\n....#..#....\\n...#....#...\\n...#.##.#...\\n...#....#...\\n....#..#....\\n.....##.....\\n............\\n............\\n............\"\n  }\n]"
     },
     {
       "title": "Deep Tech",
-      "executive_summary": "Researchers developed a room-temperature quantum device using twisted light to entangle photons and electrons, overcoming a major hurdle in practical quantum technology implementation.",
-      "stories": [
-        {
-          "headline": "Twisted Light Entangles Photons and Electrons at Room Temperature",
-          "body": "A breakthrough quantum device operates at room temperature using twisted light to entangle photons and electrons, solving one of quantum technology's biggest practical challenges. The discovery could accelerate real-world quantum applications.",
-          "source_name": "ScienceDaily",
-          "source_url": "https://www.sciencedaily.com/news/matter_energy/quantum_physics/",
-          "published_at": "2026-05-30T00:00:00Z",
-          "pixel_art": "............\n............\n....####....\n...#....#...\n..#.####.#..\n.#..####..#.\n.#........#.\n.#..####..#.\n...#....#...\n....####....\n............\n............"
-        }
-      ]
+      "executive_summary": "No major deep tech news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "stories": []
     }
   ]
 }
