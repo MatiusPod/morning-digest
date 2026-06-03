@@ -1,10 +1,35 @@
 {
-  "generated_at": "2026-06-02 11:52 UTC",
+  "generated_at": "2026-06-03 16:04 UTC",
   "topics": [
     {
       "title": "AI Announcements",
-      "executive_summary": "No major AI announcement news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "Microsoft launched its first proprietary AI models\u2014MAI-Code-1-Flash for coding and MAI-Thinking-1 for reasoning\u2014at Build 2026, while Meta began monetizing its AI Business Agent, signaling Big Tech's race to build homegrown alternatives to OpenAI and Anthropic.",
+      "stories": [
+        {
+          "headline": "Microsoft debuts proprietary AI models at Build 2026",
+          "body": "<cite index=\"1-8\">Microsoft announced MAI-Code-1-Flash, its inaugural model that takes written descriptions from people and spits out source code for applications and websites.</cite> <cite index=\"1-10,1-11\">In addition to MAI-Code-1-Flash, Microsoft is introducing MAI-Thinking-1, a reasoning model, built for high efficiency and performance, but importantly, at a low-token cost.</cite>",
+          "source_url": "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html",
+          "source_name": "CNBC",
+          "published_at": "2026-06-02T16:00:00Z",
+          "pixel_art": "............\n............\n...#####....\n..#.....#...\n..#.####.#..\n..#.#..#.#..\n..#.####.#..\n..#.....#...\n...#####....\n............\n............\n............"
+        },
+        {
+          "headline": "Microsoft unveils Copilot super app with new agents",
+          "body": "<cite index=\"5-1\">Microsoft will be unveiling a Copilot super app this summer that will combine chat, coding, and a function named Autopilot.</cite> <cite index=\"5-9\">Autopilot is designed to connect to an agent named Scout, the first of a new category of agents that Nadella said will be able to join group chats in Microsoft Teams or handle email threads in Outlook.</cite>",
+          "source_url": "https://fortune.com/2026/06/02/microsoft-moves-to-remain-ais-center-of-gravity/",
+          "source_name": "Fortune",
+          "published_at": "2026-06-02T17:00:00Z",
+          "pixel_art": "............\n............\n...#####....\n..#.....#...\n..#.###.#...\n..#.#.#.#...\n..#.###.#...\n..#.....#...\n...#####....\n............\n............\n............"
+        },
+        {
+          "headline": "Meta monetizes AI Business Agent for companies",
+          "body": "<cite index=\"3-15,3-16\">Meta will soon begin selling access to an AI agent in a new monetization path for the tech giant increasingly pushing into AI. As of Wednesday, companies will now be charged for access to the \"Meta Business Agent.\"</cite> <cite index=\"3-17\">The agent's primary role focuses on communication with a business's customers on Meta's communications platforms WhatsApp, Messenger, and Instagram.</cite>",
+          "source_url": "https://finance.yahoo.com/sectors/technology/live/tech-stocks-today-google-stock-falls-on-plans-to-raise-80-billion-nvidia-ceo-blesses-marvell-stock-100000832.html",
+          "source_name": "Yahoo Finance",
+          "published_at": "2026-06-03T14:00:00Z",
+          "pixel_art": "............\n............\n....####....\n...#...#....\n...#.##.#...\n...#.#..#...\n...#.##.#...\n...#...#....\n....####....\n............\n............\n............"
+        }
+      ]
     },
     {
       "title": "Startups",
@@ -13,8 +38,17 @@
     },
     {
       "title": "AI Infrastructure",
-      "executive_summary": "No major AI infrastructure news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "Digi Power X committed $35 million to NVIDIA's next-generation Vera Rubin GPU platform, betting on advanced AI infrastructure for its GPU-as-a-Service business with deployment starting Q1 2027.",
+      "stories": [
+        {
+          "headline": "Digi Power X Bets $35M on NVIDIA Vera Rubin GPUs",
+          "body": "<cite index=\"4-1\">Digi Power X announced a $35 million commitment to purchase NVIDIA's next-generation Vera Rubin platform to expand its NeoCloudz GPU-as-a-Service business</cite>. <cite index=\"4-2\">The Vera Rubin systems pair Rubin GPUs (288GB HBM4) with the 88-core Vera CPU over NVLink 6</cite>, representing NVIDIA's rack-scale successor to Blackwell.",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/0001854368/000121390026064447/ea029340001ex99-1.htm",
+          "source_name": "SEC Filing",
+          "published_at": "2026-06-03T00:00:00Z",
+          "pixel_art": "............\n............\n....####....\n...#....#...\n..#.####.#..\n..#.#..#.#..\n..#.####.#..\n...#....#...\n....####....\n............\n............\n............"
+        }
+      ]
     },
     {
       "title": "Deep Tech",
