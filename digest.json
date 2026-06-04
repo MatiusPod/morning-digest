@@ -1,35 +1,10 @@
 {
-  "generated_at": "2026-06-03 16:04 UTC",
+  "generated_at": "2026-06-04 11:36 UTC",
   "topics": [
     {
       "title": "AI Announcements",
-      "executive_summary": "Microsoft launched its first proprietary AI models\u2014MAI-Code-1-Flash for coding and MAI-Thinking-1 for reasoning\u2014at Build 2026, while Meta began monetizing its AI Business Agent, signaling Big Tech's race to build homegrown alternatives to OpenAI and Anthropic.",
-      "stories": [
-        {
-          "headline": "Microsoft debuts proprietary AI models at Build 2026",
-          "body": "<cite index=\"1-8\">Microsoft announced MAI-Code-1-Flash, its inaugural model that takes written descriptions from people and spits out source code for applications and websites.</cite> <cite index=\"1-10,1-11\">In addition to MAI-Code-1-Flash, Microsoft is introducing MAI-Thinking-1, a reasoning model, built for high efficiency and performance, but importantly, at a low-token cost.</cite>",
-          "source_url": "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html",
-          "source_name": "CNBC",
-          "published_at": "2026-06-02T16:00:00Z",
-          "pixel_art": "............\n............\n...#####....\n..#.....#...\n..#.####.#..\n..#.#..#.#..\n..#.####.#..\n..#.....#...\n...#####....\n............\n............\n............"
-        },
-        {
-          "headline": "Microsoft unveils Copilot super app with new agents",
-          "body": "<cite index=\"5-1\">Microsoft will be unveiling a Copilot super app this summer that will combine chat, coding, and a function named Autopilot.</cite> <cite index=\"5-9\">Autopilot is designed to connect to an agent named Scout, the first of a new category of agents that Nadella said will be able to join group chats in Microsoft Teams or handle email threads in Outlook.</cite>",
-          "source_url": "https://fortune.com/2026/06/02/microsoft-moves-to-remain-ais-center-of-gravity/",
-          "source_name": "Fortune",
-          "published_at": "2026-06-02T17:00:00Z",
-          "pixel_art": "............\n............\n...#####....\n..#.....#...\n..#.###.#...\n..#.#.#.#...\n..#.###.#...\n..#.....#...\n...#####....\n............\n............\n............"
-        },
-        {
-          "headline": "Meta monetizes AI Business Agent for companies",
-          "body": "<cite index=\"3-15,3-16\">Meta will soon begin selling access to an AI agent in a new monetization path for the tech giant increasingly pushing into AI. As of Wednesday, companies will now be charged for access to the \"Meta Business Agent.\"</cite> <cite index=\"3-17\">The agent's primary role focuses on communication with a business's customers on Meta's communications platforms WhatsApp, Messenger, and Instagram.</cite>",
-          "source_url": "https://finance.yahoo.com/sectors/technology/live/tech-stocks-today-google-stock-falls-on-plans-to-raise-80-billion-nvidia-ceo-blesses-marvell-stock-100000832.html",
-          "source_name": "Yahoo Finance",
-          "published_at": "2026-06-03T14:00:00Z",
-          "pixel_art": "............\n............\n....####....\n...#...#....\n...#.##.#...\n...#.#..#...\n...#.##.#...\n...#...#....\n....####....\n............\n............\n............"
-        }
-      ]
+      "executive_summary": "No major AI announcement news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "stories": []
     },
     {
       "title": "Startups",
@@ -38,15 +13,39 @@
     },
     {
       "title": "AI Infrastructure",
-      "executive_summary": "Digi Power X committed $35 million to NVIDIA's next-generation Vera Rubin GPU platform, betting on advanced AI infrastructure for its GPU-as-a-Service business with deployment starting Q1 2027.",
+      "executive_summary": "<cite index=\"3-27\">NVIDIA signaled a busy second half of 2026 with Grace Blackwell, Vera Rubin, and a surprise unannounced product</cite>, while <cite index=\"5-5,5-6\">NVIDIA and Microsoft plan to reinvent the PC with new AI-focused system-on-chips that sent AMD, Intel and Qualcomm shares lower</cite>.",
       "stories": [
         {
-          "headline": "Digi Power X Bets $35M on NVIDIA Vera Rubin GPUs",
-          "body": "<cite index=\"4-1\">Digi Power X announced a $35 million commitment to purchase NVIDIA's next-generation Vera Rubin platform to expand its NeoCloudz GPU-as-a-Service business</cite>. <cite index=\"4-2\">The Vera Rubin systems pair Rubin GPUs (288GB HBM4) with the 88-core Vera CPU over NVLink 6</cite>, representing NVIDIA's rack-scale successor to Blackwell.",
-          "source_url": "https://www.sec.gov/Archives/edgar/data/0001854368/000121390026064447/ea029340001ex99-1.htm",
-          "source_name": "SEC Filing",
-          "published_at": "2026-06-03T00:00:00Z",
-          "pixel_art": "............\n............\n....####....\n...#....#...\n..#.####.#..\n..#.#..#.#..\n..#.####.#..\n...#....#...\n....####....\n............\n............\n............"
+          "headline": "NVIDIA Vera Rubin GPU hits production, deploys to major clouds",
+          "body": "<cite index=\"4-4,4-5\">NVIDIA Rubin is in full production with Rubin-based products available from partners in the second half of 2026, with AWS, Google Cloud, Microsoft and OCI among early deployers</cite>. <cite index=\"2-7\">The Vera Rubin NVL72 delivers 10x more throughput per watt and 1/10th the token cost with one-fourth the GPUs for training</cite>.",
+          "source_url": "https://nvidianews.nvidia.com/news/rubin-platform-ai-supercomputer",
+          "source_name": "NVIDIA Newsroom",
+          "published_at": "2026-06-03T14:00:00Z",
+          "pixel_art": "............\n............\n....######..\n...#......#.\n..#.......#.\n..#.......#.\n..#.......#.\n...#.###.#..\n....#####...\n............\n............\n............"
+        },
+        {
+          "headline": "NVIDIA Vera CPU and networking silicon enter production",
+          "body": "<cite index=\"3-31\">NVIDIA Spectrum-X Ethernet Photonics\u2014the first 200Gb/s SerDes Ethernet switch with co-packaged optics for million-GPU factories\u2014is now in production with CoreWeave, Lambda and Oracle among early adopters</cite>. <cite index=\"3-32\">NVIDIA Vera CPU delivers 88 cores and 3.6TB/s on-chip fabric for agent workloads</cite>.",
+          "source_url": "https://blogs.nvidia.com/blog/nvidia-gtc-taipei-computex-2026-news/",
+          "source_name": "NVIDIA Blog",
+          "published_at": "2026-06-03T10:00:00Z",
+          "pixel_art": "............\n............\n......##....\n.....####...\n....##..##..\n....##..##..\n....##..##..\n.....####...\n......##....\n............\n............\n............"
+        },
+        {
+          "headline": "Intel positions itself as full-stack AI infrastructure provider",
+          "body": "<cite index=\"8-1,8-5,8-6\">At Computex 2026, Intel transformed itself into a full-stack AI story from Xeon 6+ data center chips to edge platforms, pitching rackscale AI systems built around Xeon CPUs and SambaNova RDUs</cite>. <cite index=\"8-18\">Intel's Crescent Island AI inference GPU using cheaper LPDDR5x and air cooling is set for limited shipments by late 2026</cite>.",
+          "source_url": "https://stockstotrade.com/news/intel-corporation-intc-news-2026_06_03/",
+          "source_name": "StocksToTrade",
+          "published_at": "2026-06-03T14:02:31Z",
+          "pixel_art": "............\n............\n...#######..\n...#.......#\n...#.##.#..#\n...#.##.#..#\n...#.......#\n...#########\n............\n............\n............\n............"
+        },
+        {
+          "headline": "NVIDIA enters PC market with RTX Spark, targets ARM SoC dominance",
+          "body": "<cite index=\"5-5,5-9\">NVIDIA CEO Jensen Huang said his company and Microsoft will \"reinvent the PC\", with NVIDIA unveiling a powerful laptop chip for Windows machines on June 1</cite>. <cite index=\"5-1,5-6\">The plan to build system-on-chips for PCs sent shares of AMD, Intel and Qualcomm downward, signaling NVIDIA's push beyond data centers to edge devices</cite>.",
+          "source_url": "https://www.cnbc.com/2026/06/02/nvidias-new-pc-chips-are-ceos-bid-to-own-every-part-of-ai-stack.html",
+          "source_name": "CNBC",
+          "published_at": "2026-06-02T14:30:00Z",
+          "pixel_art": "............\n............\n...########.\n..#........#\n..#..####..#\n..#..####..#\n..#........#\n..########..\n............\n............\n............\n............"
         }
       ]
     },
