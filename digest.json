@@ -1,23 +1,14 @@
 {
-  "generated_at": "2026-06-05 08:05 UTC",
+  "generated_at": "2026-06-06 06:35 UTC",
   "topics": [
     {
       "title": "AI Announcements",
-      "executive_summary": "Microsoft announced its own generative AI models at Build 2026, including MAI-Code-1-Flash for code generation and MAI-Thinking-1 for reasoning, signaling a strategic push to compete directly with OpenAI and reduce developer reliance on external models.",
-      "stories": [
-        {
-          "headline": "Microsoft unveils homegrown AI models at Build conference",
-          "body": "Microsoft announced MAI-Code-1-Flash, a code generation model, and MAI-Thinking-1, a reasoning model, at its Build developer conference in San Francisco. The move represents a shift toward competing directly with OpenAI and Anthropic while lowering costs for developers using Azure.",
-          "source_url": "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html",
-          "source_name": "CNBC",
-          "published_at": "2026-06-02T00:00:00Z",
-          "pixel_art": "............\n............\n.....####...\n....#....#..\n...#.####.#.\n...#.####.#.\n...#......#.\n....#....#..\n.....####...\n............\n............\n............"
-        }
-      ]
+      "executive_summary": "No major AI announcement news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "stories": []
     },
     {
       "title": "Startups",
-      "executive_summary": "No major startup funding news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the startup sector.",
+      "executive_summary": "No major startup funding news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
       "stories": []
     },
     {
@@ -27,33 +18,8 @@
     },
     {
       "title": "Deep Tech",
-      "executive_summary": "Recent breakthroughs include a low-temperature hydrogen production method using perovskite catalysts, a quantum chip that encodes information using light's \"valley\" degree of freedom, and NASA's X-59 jet preparing for its first supersonic flight test.",
-      "stories": [
-        {
-          "headline": "Perovskite catalyst makes hydrogen from water at lower temperatures",
-          "body": "University of Birmingham researchers developed a perovskite-based catalyst that splits water into hydrogen at much lower temperatures than existing technologies, potentially enabling factories and renewable energy sites to convert waste heat into clean fuel.",
-          "source_name": "ScienceDaily",
-          "source_url": "https://www.sciencedaily.com/releases/2026/06/260602_hydrogen.htm",
-          "published_at": "2026-06-02T00:00:00Z",
-          "pixel_art": "............\n............\n....######..\n...#......#.\n..#..##...#.\n..#..##...#.\n..#..##...#.\n...#......#.\n....######..\n............\n............\n............"
-        },
-        {
-          "headline": "Quantum chip controls light via valley degree of freedom",
-          "body": "Scientists created a chip that generates, steers, and reads light-based information using atomically thin materials and nanoscale structures, encoding data via the quantum property of light called the valley degree of freedom.",
-          "source_name": "ScienceDaily",
-          "source_url": "https://www.sciencedaily.com/releases/2026/06/260602_quantum_light.htm",
-          "published_at": "2026-06-02T00:00:00Z",
-          "pixel_art": "............\n...###...##.\n..#...#.#..#\n.#.....#...#\n#......#...#\n#......#...#\n.#.....#...#\n..#...#.#..#\n...###...##.\n............\n............\n............"
-        },
-        {
-          "headline": "NASA X-59 jet prepares to break sound barrier",
-          "body": "After successful test flights approaching near-supersonic speeds, NASA's experimental X-59 aircraft is preparing to cross Mach 1 and eventually reach Mach 1.6 at 60,000 feet, designed to replace the thunderous sonic boom with a quieter alternative.",
-          "source_name": "ScienceDaily",
-          "source_url": "https://www.sciencedaily.com/releases/2026/06/260601_x59.htm",
-          "published_at": "2026-06-01T00:00:00Z",
-          "pixel_art": "............\n...#......#.\n..###....###\n.#####..#####\n######..#####\n.#####..#####\n..###....###\n...#......#.\n............\n............\n............\n............"
-        }
-      ]
+      "executive_summary": "No major deep tech news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "stories": []
     }
   ]
 }
