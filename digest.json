@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-07 07:53 UTC",
+  "generated_at": "2026-06-08 10:51 UTC",
   "topics": [
     {
       "title": "AI Announcements",
@@ -13,8 +13,25 @@
     },
     {
       "title": "AI Infrastructure",
-      "executive_summary": "No major AI infrastructure news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "Alpha Compute went live with a 504-GPU cluster in Canada and signed a $32.2M, two-year AI deal; Digi Power X committed $35M to NVIDIA's next-gen Vera Rubin systems for Q1 2027 deployment.",
+      "stories": [
+        {
+          "headline": "Alpha Compute Launches First GPU Cluster with 504 NVIDIA B200s",
+          "body": "<cite index=\"8-1,8-5\">Alpha Compute deployed its first GPU cluster in Canada with 504 NVIDIA B200 GPUs after closing a $32.2 million, two-year off-take agreement with a leading frontier AI research laboratory</cite>, projecting annualized revenue run-rate of approximately $23 million.",
+          "source_name": "Globe Newswire/SEC Filing",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/0001095435/000117184326003934/exh_991.htm",
+          "published_at": "2026-06-05T00:00:00Z",
+          "pixel_art": "............\n............\n....####....\n...#....#...\n..#.####.#..\n..#.####.#..\n..#......#..\n...#....#...\n....####....\n............\n............\n............"
+        },
+        {
+          "headline": "Digi Power X Commits $35M to NVIDIA's Next-Gen Vera Rubin Platform",
+          "body": "<cite index=\"5-2,5-3\">Digi Power X committed $35 million to acquire NVIDIA Vera Rubin systems\u2014NVIDIA's rack-scale successor to Blackwell\u2014with initial deployment targeted for Q1 2027</cite> to expand its GPU-as-a-Service operations.",
+          "source_name": "Globe Newswire/SEC Filing",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/0001854368/000121390026064447/ea029340001ex99-1.htm",
+          "published_at": "2026-06-03T00:00:00Z",
+          "pixel_art": "............\n............\n...#.###....\n...#.#..#...\n...#.###....\n...#.#......\n...#.###....\n............\n............\n............\n............\n............"
+        }
+      ]
     },
     {
       "title": "Deep Tech",
