@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08 10:51 UTC",
+  "generated_at": "2026-06-09 09:40 UTC",
   "topics": [
     {
       "title": "AI Announcements",
@@ -8,30 +8,46 @@
     },
     {
       "title": "Startups",
-      "executive_summary": "No major startup funding news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "AI-powered enterprise tools dominate June 9 funding, with massive rounds flowing into cloud cost optimization (PointFive's $60M Series B), industrial design platforms (PhysicsX's $300M Series C), and AI security startups combating emerging threats.",
+      "stories": [
+        {
+          "headline": "PhysicsX raises $300M Series C for industrial AI design.",
+          "body": "London-based PhysicsX closed a $300 million Series C led by Temasek, targeting AI applications in aerospace, semiconductors, and defense \u2014 signaling investor appetite for AI-driven efficiency in capital-intensive industries.",
+          "source_url": "https://techstartups.com/2026/06/08/venture-capital-startup-funding-roundup-june-9-2026/",
+          "source_name": "Tech Startups",
+          "published_at": "2026-06-09T00:00:00Z",
+          "pixel_art": "............\n............\n....#####...\n...#.....#..\n..#.#####.#.\n..#.#...#.#.\n..#.#####.#.\n...#.....#..\n....#####...\n............\n............\n............"
+        },
+        {
+          "headline": "PointFive nabs $60M Series B for cloud cost AI tools.",
+          "body": "New York-based PointFive raised $60 million in Series B funding led by Accel to scale its AI platform that helps enterprises cut cloud and compute costs \u2014 reflecting investor focus on operational efficiency over hype.",
+          "source_url": "https://techstartups.com/2026/06/08/venture-capital-startup-funding-roundup-june-9-2026/",
+          "source_name": "Tech Startups",
+          "published_at": "2026-06-09T00:00:00Z",
+          "pixel_art": "............\n...#######..\n..#.......#.\n.#...###...#\n#...#...#...#\n#...#...#...#\n#...#...#...#\n.#...###...#.\n..#.......#.\n...#######..\n............\n............"
+        },
+        {
+          "headline": "A Security, InfoHawk raise for AI-driven threat detection.",
+          "body": "A Security ($37M, backed by Lightspeed and Cyberstarts) and InfoHawk ($2.25M, led by ex-FTC Chair Jon Leibowitz) closed funding to tackle AI-enabled security threats \u2014 autonomous pentesting and AI misinformation detection.",
+          "source_url": "https://techstartups.com/2026/06/08/venture-capital-startup-funding-roundup-june-9-2026/",
+          "source_name": "Tech Startups",
+          "published_at": "2026-06-09T00:00:00Z",
+          "pixel_art": "............\n....#####...\n...#.....#..\n..#.##.##.#.\n..#........#\n..#.##.##.#.\n..#.#...#.#.\n...#.....#..\n....#####...\n............\n............\n............"
+        },
+        {
+          "headline": "Edge Markets raises $29.2M for blockchain trading.",
+          "body": "New York-based Edge Markets secured $29.2 million led by CoinFund for blockchain trading products, part of a broader wave of fintech/crypto funding as regulatory clarity improves.",
+          "source_url": "https://techstartups.com/2026/06/08/venture-capital-startup-funding-roundup-june-9-2026/",
+          "source_name": "Tech Startups",
+          "published_at": "2026-06-09T00:00:00Z",
+          "pixel_art": "............\n.....###....\n....#...#...\n...#.....#..\n...#.###.#..\n...#.#.#.#..\n...#.###.#..\n....#...#...\n.....###....\n............\n............\n............"
+        }
+      ]
     },
     {
       "title": "AI Infrastructure",
-      "executive_summary": "Alpha Compute went live with a 504-GPU cluster in Canada and signed a $32.2M, two-year AI deal; Digi Power X committed $35M to NVIDIA's next-gen Vera Rubin systems for Q1 2027 deployment.",
-      "stories": [
-        {
-          "headline": "Alpha Compute Launches First GPU Cluster with 504 NVIDIA B200s",
-          "body": "<cite index=\"8-1,8-5\">Alpha Compute deployed its first GPU cluster in Canada with 504 NVIDIA B200 GPUs after closing a $32.2 million, two-year off-take agreement with a leading frontier AI research laboratory</cite>, projecting annualized revenue run-rate of approximately $23 million.",
-          "source_name": "Globe Newswire/SEC Filing",
-          "source_url": "https://www.sec.gov/Archives/edgar/data/0001095435/000117184326003934/exh_991.htm",
-          "published_at": "2026-06-05T00:00:00Z",
-          "pixel_art": "............\n............\n....####....\n...#....#...\n..#.####.#..\n..#.####.#..\n..#......#..\n...#....#...\n....####....\n............\n............\n............"
-        },
-        {
-          "headline": "Digi Power X Commits $35M to NVIDIA's Next-Gen Vera Rubin Platform",
-          "body": "<cite index=\"5-2,5-3\">Digi Power X committed $35 million to acquire NVIDIA Vera Rubin systems\u2014NVIDIA's rack-scale successor to Blackwell\u2014with initial deployment targeted for Q1 2027</cite> to expand its GPU-as-a-Service operations.",
-          "source_name": "Globe Newswire/SEC Filing",
-          "source_url": "https://www.sec.gov/Archives/edgar/data/0001854368/000121390026064447/ea029340001ex99-1.htm",
-          "published_at": "2026-06-03T00:00:00Z",
-          "pixel_art": "............\n............\n...#.###....\n...#.#..#...\n...#.###....\n...#.#......\n...#.###....\n............\n............\n............\n............\n............"
-        }
-      ]
+      "executive_summary": "No major AI infrastructure news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "stories": []
     },
     {
       "title": "Deep Tech",
