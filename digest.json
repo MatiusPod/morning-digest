@@ -1,58 +1,100 @@
 {
-  "generated_at": "2026-06-09 09:40 UTC",
+  "generated_at": "2026-06-10 09:57 UTC",
   "topics": [
     {
       "title": "AI Announcements",
-      "executive_summary": "No major AI announcement news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
-    },
-    {
-      "title": "Startups",
-      "executive_summary": "AI-powered enterprise tools dominate June 9 funding, with massive rounds flowing into cloud cost optimization (PointFive's $60M Series B), industrial design platforms (PhysicsX's $300M Series C), and AI security startups combating emerging threats.",
+      "executive_summary": "<cite index=\"4-12,4-13\">OpenAI has confidentially filed paperwork for a U.S. IPO, positioning itself for a valuation that could reach the trillion-dollar range</cite>, marking the biggest test yet of whether public markets will fund the AI infrastructure race at historic scale.",
       "stories": [
         {
-          "headline": "PhysicsX raises $300M Series C for industrial AI design.",
-          "body": "London-based PhysicsX closed a $300 million Series C led by Temasek, targeting AI applications in aerospace, semiconductors, and defense \u2014 signaling investor appetite for AI-driven efficiency in capital-intensive industries.",
-          "source_url": "https://techstartups.com/2026/06/08/venture-capital-startup-funding-roundup-june-9-2026/",
+          "headline": "OpenAI confidentially files for U.S. IPO at potential trillion-dollar valuation",
+          "body": "<cite index=\"4-12,4-13\">OpenAI has confidentially filed paperwork for a U.S. IPO, positioning itself for a valuation that could reach the trillion-dollar range, following similar moves by Anthropic and SpaceX.</cite> <cite index=\"4-15\">The path to public markets will force investors to weigh massive revenue growth against heavy infrastructure spending, regulatory scrutiny, and questions about long-term profitability.</cite>",
           "source_name": "Tech Startups",
+          "source_url": "https://techstartups.com/2026/06/09/top-tech-news-today-june-9-2026/",
           "published_at": "2026-06-09T00:00:00Z",
-          "pixel_art": "............\n............\n....#####...\n...#.....#..\n..#.#####.#.\n..#.#...#.#.\n..#.#####.#.\n...#.....#..\n....#####...\n............\n............\n............"
+          "pixel_art": "............\n............\n....#####...\n...#.....#..\n..#...O...#..\n..#.....#...\n..#.....#...\n...#...#....\n....###....\n............\n............\n............"
         },
         {
-          "headline": "PointFive nabs $60M Series B for cloud cost AI tools.",
-          "body": "New York-based PointFive raised $60 million in Series B funding led by Accel to scale its AI platform that helps enterprises cut cloud and compute costs \u2014 reflecting investor focus on operational efficiency over hype.",
-          "source_url": "https://techstartups.com/2026/06/08/venture-capital-startup-funding-roundup-june-9-2026/",
-          "source_name": "Tech Startups",
+          "headline": "Meta launches proprietary Muse Spark model under new Superintelligence Labs",
+          "body": "<cite index=\"1-2,1-3\">Meta unveiled Muse Spark, its first flagship large language model under Chief AI Officer Alexandr Wang's newly formed Superintelligence Labs, delivering competitive performance on multimodal perception, reasoning, health, and agentic tasks at a fraction of compute cost.</cite> <cite index=\"1-1\">Meta also announced AI capital expenditures of $115\u2013135 billion for 2026, nearly double last year's spending.</cite>",
+          "source_name": "Crescendo",
+          "source_url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
           "published_at": "2026-06-09T00:00:00Z",
-          "pixel_art": "............\n...#######..\n..#.......#.\n.#...###...#\n#...#...#...#\n#...#...#...#\n#...#...#...#\n.#...###...#.\n..#.......#.\n...#######..\n............\n............"
+          "pixel_art": "............\n............\n.....#####..\n....#.....#.\n...#...M...#\n...#.....#.\n...#.....#.\n....#...#...\n.....###....\n............\n............\n............"
         },
         {
-          "headline": "A Security, InfoHawk raise for AI-driven threat detection.",
-          "body": "A Security ($37M, backed by Lightspeed and Cyberstarts) and InfoHawk ($2.25M, led by ex-FTC Chair Jon Leibowitz) closed funding to tackle AI-enabled security threats \u2014 autonomous pentesting and AI misinformation detection.",
-          "source_url": "https://techstartups.com/2026/06/08/venture-capital-startup-funding-roundup-june-9-2026/",
-          "source_name": "Tech Startups",
+          "headline": "Anthropic launches Project Glasswing security initiative with frontier model access",
+          "body": "<cite index=\"1-5\">Anthropic launched Project Glasswing, giving select organizations including AWS, Apple, Cisco, Google, JPMorgan Chase, and Microsoft access to Claude Mythos Preview, its unreleased frontier model, to find and fix critical software vulnerabilities before malicious actors can exploit them.</cite>",
+          "source_name": "Crescendo",
+          "source_url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
           "published_at": "2026-06-09T00:00:00Z",
-          "pixel_art": "............\n....#####...\n...#.....#..\n..#.##.##.#.\n..#........#\n..#.##.##.#.\n..#.#...#.#.\n...#.....#..\n....#####...\n............\n............\n............"
+          "pixel_art": "............\n............\n....#####...\n...#.....#..\n..#..LOCK#..\n..#.....#...\n..#.....#...\n...#...#....\n....###....\n............\n............\n............"
         },
         {
-          "headline": "Edge Markets raises $29.2M for blockchain trading.",
-          "body": "New York-based Edge Markets secured $29.2 million led by CoinFund for blockchain trading products, part of a broader wave of fintech/crypto funding as regulatory clarity improves.",
-          "source_url": "https://techstartups.com/2026/06/08/venture-capital-startup-funding-roundup-june-9-2026/",
+          "headline": "Microsoft Suleyman: superintelligence is closer, AI automates tasks not entire jobs",
+          "body": "<cite index=\"4-17,4-18\">Microsoft AI CEO Mustafa Suleyman said superintelligence is getting closer while pushing back against the idea that AI will simply wipe out entire jobs, arguing that AI is more likely to automate tasks inside roles rather than replace every worker outright.</cite>",
           "source_name": "Tech Startups",
+          "source_url": "https://techstartups.com/2026/06/09/top-tech-news-today-june-9-2026/",
           "published_at": "2026-06-09T00:00:00Z",
-          "pixel_art": "............\n.....###....\n....#...#...\n...#.....#..\n...#.###.#..\n...#.#.#.#..\n...#.###.#..\n....#...#...\n.....###....\n............\n............\n............"
+          "pixel_art": "............\n............\n....#####...\n...#.....#..\n..#...M...#..\n..#.....#...\n..#.....#...\n...#...#....\n....###....\n............\n............\n............"
         }
       ]
     },
     {
-      "title": "AI Infrastructure",
-      "executive_summary": "No major AI infrastructure news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "title": "Startups",
+      "executive_summary": "No major startup funding news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
       "stories": []
     },
     {
+      "title": "AI Infrastructure",
+      "executive_summary": "Digi Power X committed $35 million to NVIDIA's next-generation Vera Rubin GPU platform, targeting Q1 2027 deployment to expand its GPU-as-a-Service business.",
+      "stories": [
+        {
+          "headline": "Digi Power X Bets $35M on NVIDIA's Next Vera Rubin GPUs",
+          "body": "The AI infrastructure operator committed to purchasing NVIDIA Vera Rubin systems, pairing Rubin GPUs (288GB HBM4) with the 88-core Vera CPU over NVLink 6, to expand its NeoCloudz GPU-as-a-Service platform with initial deployment targeted for Q1 2027.",
+          "source_name": "SEC Filing",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/0001854368/000121390026064447/ea029340001ex99-1.htm",
+          "published_at": "2026-06-03T00:00:00Z",
+          "pixel_art": "............\n............\n....######..\n...#......#.\n..#..####..#\n..#..#..#..#\n..#..####..#\n...#......#.\n....######..\n............\n............\n............"
+        }
+      ]
+    },
+    {
       "title": "Deep Tech",
-      "executive_summary": "No major deep tech news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "Scientists deployed nanoscale gold metamaterials to supercharge heat transfer across tiny gaps, while recent breakthroughs span base editing of human embryos, AI-designed vaccines, and a novel OptSAR satellite combining optical and radar imaging.",
+      "stories": [
+        {
+          "headline": "Nanoscale gold metamaterials quadruple heat transfer efficiency",
+          "body": "<cite index=\"5-5\">Scientists used nanoscale gold metamaterials to supercharge heat transfer across tiny gaps, achieving up to four times more energy flow than similar conventional systems.</cit> <cit index=\"5-5\">The breakthrough could lead to better chip cooling, more efficient energy technologies, and a new era of precision heat applications.</cit>",
+          "source_name": "ScienceDaily",
+          "source_url": "https://www.sciencedaily.com/",
+          "published_at": "2026-06-08T00:00:00Z",
+          "pixel_art": "............\n............\n....####....\n...#....#...\n..#.####.#..\n..#.####.#..\n..#.##..#...\n...#.##.#...\n....####....\n............\n............\n............"
+        },
+        {
+          "headline": "Columbia team edits early human embryos with base editing technique",
+          "body": "<cit index=\"1-2\">Researchers at Columbia University used base editing to introduce precise single-letter DNA changes without the large chromosomal alterations previously associated with double-strand-break CRISPR gene editing, while noting that the approach remains far from clinical use and raises ethical questions over human germline engineering.</cit>",
+          "source_name": "Wikipedia - 2026 in science",
+          "source_url": "https://en.wikipedia.org/wiki/2026_in_science",
+          "published_at": "2026-06-01T00:00:00Z",
+          "pixel_art": "............\n...###..###.\n..#...# #....\n..#..##.##..\n..#.#..#.#..\n...#.....#..\n...#.....#..\n...#.....#..\n............\n............\n............\n............"
+        },
+        {
+          "headline": "AI-designed vaccine enters first human clinical trial",
+          "body": "<cit index=\"1-4\">Researchers at the University of Cambridge and DIOSynVax report the first human clinical trial of a vaccine whose active component was designed entirely by computer simulations.</cit>",
+          "source_name": "Wikipedia - 2026 in science",
+          "source_url": "https://en.wikipedia.org/wiki/2026_in_science",
+          "published_at": "2026-06-05T00:00:00Z",
+          "pixel_art": "............\n............\n....#####...\n...#.....#..\n..#...#...#.\n..#.#####.#.\n..#.......#.\n...#.....#..\n....#####...\n............\n............\n............"
+        },
+        {
+          "headline": "India's GalaxEye launches first OptoSAR hybrid imaging satellite",
+          "body": "<cit index=\"1-12\">World's first OptoSAR satellite was launched by GalaxEye, a startup from Bangalore, India, it combines Optical (multi-spectral) and Synthetic Aperture Radar (SAR) imaging and fuses both the data together.</cit>",
+          "source_name": "Wikipedia - 2026 in science",
+          "source_url": "https://en.wikipedia.org/wiki/2026_in_science",
+          "published_at": "2026-06-09T00:00:00Z",
+          "pixel_art": "............\n....######..\n...#......#.\n...#..##..#.\n...#.#..#.#.\n...#.####.#.\n...#.#....#.\n...#.#....#.\n....######..\n............\n............\n............"
+        }
+      ]
     }
   ]
 }
