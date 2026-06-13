@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12 08:24 UTC",
+  "generated_at": "2026-06-13 07:45 UTC",
   "topics": [
     {
       "title": "AI Announcements",
@@ -13,8 +13,17 @@
     },
     {
       "title": "AI Infrastructure",
-      "executive_summary": "No major AI infrastructure news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "NVIDIA announced a multiyear strategic partnership with Meta spanning hyperscale AI infrastructure, deploying millions of Blackwell and Rubin GPUs alongside NVIDIA networking and CPUs for training and inference at massive scale.",
+      "stories": [
+        {
+          "headline": "Meta, NVIDIA ink megadeal for AI infrastructure buildout",
+          "body": "<cite index=\"1-2\">NVIDIA announced a multiyear, multigenerational strategic partnership with Meta spanning on-premises, cloud and AI infrastructure.</cite> <cite index=\"1-3\">The arrangement covers large-scale deployment of NVIDIA CPUs, networking and millions of NVIDIA Blackwell and Rubin GPUs</cite>, with <cite index=\"1-7\">Meta building hyperscale data centers optimized for both training and inference.</cite>",
+          "source_url": "https://nvidianews.nvidia.com/news/meta-builds-ai-infrastructure-with-nvidia",
+          "source_name": "NVIDIA Newsroom",
+          "published_at": "2026-06-12T00:00:00Z",
+          "pixel_art": "............\n............\n....######..\n...#......#.\n..#..####..#\n..#..####..#\n..#........#\n...#......#.\n....######..\n............\n............\n............"
+        }
+      ]
     },
     {
       "title": "Deep Tech",
