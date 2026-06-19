@@ -1,10 +1,19 @@
 {
-  "generated_at": "2026-06-18 08:45 UTC",
+  "generated_at": "2026-06-19 06:17 UTC",
   "topics": [
     {
       "title": "AI Announcements",
-      "executive_summary": "No major AI announcement news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
-      "stories": []
+      "executive_summary": "OpenAI has launched GPT-5.5 Instant, an upgraded healthcare-focused model that outperforms doctor-written answers in accuracy and clarity, marking the company's latest capability push as it prepares for a potential IPO filing.",
+      "stories": [
+        {
+          "headline": "OpenAI Upgrades ChatGPT Healthcare with GPT-5.5 Instant",
+          "body": "OpenAI has upgraded ChatGPT's healthcare capabilities with GPT-5.5 Instant, which now outscores answers written by doctors in accuracy, clarity, and completeness in the company's own comparative tests.",
+          "source_url": "https://llm-stats.com/ai-news",
+          "source_name": "LLM Stats",
+          "published_at": "2026-06-19T00:00:00Z",
+          "pixel_art": "............\n............\n....####....\n...#....#...\n..#......#..\n..#.####.#..\n...#.##.#...\n....#..#....\n.....##.....\n............\n............\n............"
+        }
+      ]
     },
     {
       "title": "Startups",
@@ -13,17 +22,8 @@
     },
     {
       "title": "AI Infrastructure",
-      "executive_summary": "AMD and Rackspace signed a definitive agreement on June 16 to deploy 30 MW of AMD-based AI compute capacity across Rackspace's global data centers, establishing AMD as a strategic silicon partner for governed enterprise AI infrastructure.",
-      "stories": [
-        {
-          "headline": "AMD and Rackspace Lock in 30 MW AI Deployment Deal",
-          "body": "The partners signed a definitive agreement for phased deployment beginning late 2026 through 2028, establishing AMD as a strategic technology partner at the silicon layer of Rackspace's governed AI stack designed for regulated and sovereign environments.",
-          "source_name": "SEC Filing / Rackspace",
-          "source_url": "https://www.sec.gov/Archives/edgar/data/0001810019/000181001926000059/a20260616-pressrelease.htm",
-          "published_at": "2026-06-16T00:00:00Z",
-          "pixel_art": "............\n............\n....#####...\n...##...##..\n..##.....##.\n..#.......#.\n..##.....##.\n...##...##..\n....#####...\n.....###....\n............\n............"
-        }
-      ]
+      "executive_summary": "No major AI infrastructure news was published in the last 24 hours that could be confirmed through search results, suggesting a quiet day in the sector.",
+      "stories": []
     },
     {
       "title": "Deep Tech",
